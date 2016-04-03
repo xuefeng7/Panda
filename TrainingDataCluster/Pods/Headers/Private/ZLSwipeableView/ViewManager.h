@@ -1,1 +1,0 @@
-../../../ZLSwipeableView/ZLSwipeableView/ViewManager.h

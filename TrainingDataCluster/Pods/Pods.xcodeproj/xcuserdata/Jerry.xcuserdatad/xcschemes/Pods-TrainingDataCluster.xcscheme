@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '57702C46348C37237BDE7C59'
+               BlueprintIdentifier = 'F49DBD2C4595A056DE346802'
                BlueprintName = 'Pods-TrainingDataCluster'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_TrainingDataCluster.framework'>

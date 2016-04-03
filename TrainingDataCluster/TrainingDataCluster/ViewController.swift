@@ -11,40 +11,36 @@ import ZLSwipeableView
 import SVProgressHUD
 import Parse
 
-class ViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableViewDelegate {
+class ViewController: UIViewController {
     
     var swipeView: ZLSwipeableView!
     var data = Array<PFObject>()
-    var dataIndex = 0
-    var swipeCount = 0
     
-    /// undo previous action
-    @IBAction func undo(sender: AnyObject) {
-            swipeCount -= 1
-            dataIndex = swipeCount
-            swipeView.discardAllViews()
-            swipeView.loadViewsIfNeeded()
-            undoClassify()
-    }
+    var mainImageView: UIImageView = UIImageView()
+    var mainLabel: UILabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
+        mainImageView.frame = CGRectMake(0, 100, self.view.frame.width, (2/3)*self.view.frame.height)
+        mainImageView.contentMode = .ScaleToFill
+        self.view.addSubview(mainImageView)
         
-        swipeView = ZLSwipeableView(frame: self.view.frame)
-        self.swipeView.dataSource = self
-        self.swipeView.delegate = self;
+        mainLabel.frame = CGRectMake(0, 100 + mainImageView.frame.height + 10, self.view.frame.width, 21)
+        mainLabel.textAlignment = .Center
+        self.view.addSubview(mainLabel)
+        
+        loadData()
         
         //add negative button
         let neg = UIButton(frame: CGRectMake(0, self.view.frame.height - 50, self.view.frame.width/2, 50))
         neg.setImage(UIImage(named: "negativeIcon"), forState: .Normal)
-        neg.addTarget(self, action: #selector(ViewController.classifyToNeg), forControlEvents: .TouchUpInside)
+        neg.addTarget(self, action: #selector(ViewController.clickToNeg), forControlEvents: .TouchUpInside)
         //add positive button
         let pos = UIButton(frame: CGRectMake(self.view.frame.width/2, self.view.frame.height - 50, self.view.frame.width/2, 50))
         pos.setImage(UIImage(named: "positiveIcon"), forState: .Normal)
-        pos.addTarget(self, action: #selector(ViewController.classifyToPos), forControlEvents: .TouchUpInside)
-        self.view.addSubview(swipeView)
+        pos.addTarget(self, action: #selector(ViewController.clickToPos), forControlEvents: .TouchUpInside)
+        //self.view.addSubview(swipeView)
         self.view.addSubview(neg)
         self.view.addSubview(pos)
     }
@@ -53,7 +49,8 @@ class ViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableVi
     func loadData() {
         SVProgressHUD.show()
         let query = PFQuery(className:"Faces")
-        query.whereKey("set", notContainedIn: ["positive", "negative"])
+        query.whereKey("class", notContainedIn: ["pos", "neg"])
+        query.orderByAscending("name")
         query.limit = 50
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -61,10 +58,10 @@ class ViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableVi
             if error == nil {
                 if let objects = objects {
                     for object in objects {
+                        //print(object)
                         self.data.append(object)
                     }
-                    //print(self.data)
-                    self.swipeView.loadViewsIfNeeded()
+                    self.displayImage()
                 }
             } else {
                 // Log details of the failure
@@ -74,72 +71,51 @@ class ViewController: UIViewController, ZLSwipeableViewDataSource, ZLSwipeableVi
         }
     }
     
-    ///pragma mark - ZLSwipeableViewDataSource
-    func nextViewForSwipeableView(swipeableView: ZLSwipeableView!) -> UIView! {
-        //print(dataIndex)
-        if dataIndex >= data.count {
-            //reload the data
-            dataIndex = 0
-            swipeView.discardAllViews()
+    func displayImage() {
+        if data.count == 0 {
+            //load more
             loadData()
-        }else if dataIndex < 0 {
-            dataIndex = 0
-        }
-        let content = UIImageView()
-        if let picFile = data[dataIndex]["picture"] {
-            (picFile as! PFFile).getDataInBackgroundWithBlock ({
+        }else{
+            if let picFile = data[0]["picture"] {
+            (picFile as! PFFile).getDataInBackgroundWithBlock {
                 (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
-                        content.image = UIImage(data: imageData)
+                        self.mainImageView.image = UIImage(data: imageData)
+                        if let name = self.data[0]["name"] {
+                            self.mainLabel.text = name as! String
+                        }else{
+                            self.mainLabel.text = "unknown"
+                        }
                     }
                 }else{
                     self.showMsg("load image failed with error: \(error)")
                 }
-            }, progressBlock: {
-            (percentDone: Int32) -> Void in
-                //SVProgressHUD.showProgress(Float(percentDone))
-//                if percentDone == 100 {
-//                    SVProgressHUD.dismiss()
-//                }
-            })
+            }
+            }
         }
-        content.frame = CGRectMake(0, 0, self.view.frame.width, (2/3)*self.view.frame.height)
-        content.contentMode = .ScaleToFill
-        dataIndex += 1
-        return content
     }
-    
-    ///pragma mark - ZLSwipeableViewDelegate
-    func swipeableView(swipeableView: ZLSwipeableView!, didSwipeView view: UIView!, inDirection direction: ZLSwipeableViewDirection) {
-        swipeCount += 1
-        if direction == ZLSwipeableViewDirection.Left || direction == ZLSwipeableViewDirection.Down {
-            //negative
-            classifyToNeg()
-        }else if direction == ZLSwipeableViewDirection.Right || direction == ZLSwipeableViewDirection.Up {
-            //positive
-            classifyToPos()
+
+    func clickToPos() {
+        if data.count > 0 {
+            let currentObj = data.first!
+            currentObj.setObject("pos", forKey: "class")
+            currentObj.saveInBackground()
+            data.removeFirst()
+            displayImage()
         }
     }
     
-    ///classify to positive set
-    func classifyToPos() {
-        let currentObj = data[dataIndex]
-        currentObj.setObject("positive", forKey: "set")
-        currentObj.saveInBackground()
+    func clickToNeg() {
+        if data.count > 0 {
+            let currentObj = data.first!
+            currentObj.setObject("neg", forKey: "class")
+            currentObj.saveInBackground()
+            data.removeFirst()
+            displayImage()
+        }
     }
-    ///classify to negative set
-    func classifyToNeg() {
-        let currentObj = data[dataIndex]
-        currentObj.setObject("negative", forKey: "set")
-        currentObj.saveInBackground()
-    }
-    ///undo to the previous classification action
-    func undoClassify() {
-        let currentObj = data[dataIndex]
-        currentObj.setObject("", forKey: "set")
-        currentObj.saveInBackground()
-    }
+    
     ///show alert
     func showMsg(msg: String) {
         let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.Alert)

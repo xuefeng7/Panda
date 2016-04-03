@@ -15,7 +15,16 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="WsT-VP-Jh3">
+                                <rect key="frame" x="240" y="175" width="120" height="120"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WsT-VP-Jh3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6af-ra-OqK"/>
+                            <constraint firstItem="WsT-VP-Jh3" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="155" id="zjz-fC-4fJ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +32,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="120" height="120"/>
+    </resources>
 </document>

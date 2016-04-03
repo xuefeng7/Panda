@@ -1,1 +1,0 @@
-../../../ZLSwipeableView/ZLSwipeableView/DefaultDirectionInterpretor.h
