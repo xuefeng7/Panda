@@ -2,20 +2,25 @@
 //  AppDelegate.swift
 //  TrainingDataCluster
 //
-//  Created by 彭雪峰 on 16/4/2.
-//  Copyright © 2016年 XFOffice. All rights reserved.
+//  Created by Xuefeng Peng on 16/4/2.
+//  Copyright © 2016 XFOffice. All rights reserved.
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Initialize Parse.
+        Parse.setApplicationId("yIXHt9rTdw2TZ5ozblwc1dpJwqnIGOhUwwZ39GoV",
+                               clientKey: "QOG9wERMuBFnZNn2B5bZPKbI4g5bXm7uaqC5swQl")
+        
         return true
     }
 
