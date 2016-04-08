@@ -18,9 +18,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Faces" id="fti-KG-gP8">
-                        <barButtonItem key="rightBarButtonItem" title="undo" id="8mF-Xk-OQq">
+                        <barButtonItem key="rightBarButtonItem" title="statistics" id="8mF-Xk-OQq">
                             <connections>
-                                <action selector="undo:" destination="BYZ-38-t0r" id="DWe-bq-whk"/>
+                                <action selector="showStats:" destination="BYZ-38-t0r" id="mz1-lH-8mq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

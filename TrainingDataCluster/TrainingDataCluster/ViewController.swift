@@ -7,17 +7,31 @@
 //
 
 import UIKit
-import ZLSwipeableView
 import SVProgressHUD
 import Parse
 
 class ViewController: UIViewController {
     
-    var swipeView: ZLSwipeableView!
     var data = Array<PFObject>()
     
     var mainImageView: UIImageView = UIImageView()
     var mainLabel: UILabel = UILabel()
+    
+    @IBAction func showStats(sender: AnyObject) {
+        
+        SVProgressHUD.show()
+        let query = PFQuery(className:"Faces")
+        query.whereKey("class", equalTo:"pos")
+        query.countObjectsInBackgroundWithBlock {
+            (count: Int32, error: NSError?) -> Void in
+            SVProgressHUD.dismiss()
+            if error == nil {
+                self.showMsg("Stats", msg:"pos: \(count)\nneg: \(952 - count)")
+            }else{
+                 self.showMsg("Alert", msg: "load stats failed with error: \(error)")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +80,7 @@ class ViewController: UIViewController {
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
-                self.showMsg("load data failed with error: \(error)")
+                self.showMsg("Alert", msg: "load data failed with error: \(error)")
             }
         }
     }
@@ -89,7 +103,7 @@ class ViewController: UIViewController {
                         }
                     }
                 }else{
-                    self.showMsg("load image failed with error: \(error)")
+                    self.showMsg("Alert", msg: "load image failed with error: \(error)")
                 }
             }
             }
@@ -117,8 +131,8 @@ class ViewController: UIViewController {
     }
     
     ///show alert
-    func showMsg(msg: String) {
-        let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.Alert)
+    func showMsg(title: String, msg: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
