@@ -9,10 +9,10 @@ require "open-uri"
 require "mini_magick"
 
 #Microsoft API keys
-$subscription_key = "1016f554060a4e63bab4dc7487541957"
+$subscription_key = "-"
 #Parse API keys
-$appId = "yIXHt9rTdw2TZ5ozblwc1dpJwqnIGOhUwwZ39GoV"
-$appKey = "3pbyqwZIOotJmlfFKL1vFt2jzYUOurJ3xPd2irhX"
+$appId = "-"
+$appKey = "-"
 #Faces class url
 $faceUrl = "https://api.parse.com/1/classes/Faces"
 #Face object query limit

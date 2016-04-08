@@ -3,8 +3,8 @@ require 'json'
 require 'uri'
 require 'pathname'
 
-$appId = "yIXHt9rTdw2TZ5ozblwc1dpJwqnIGOhUwwZ39GoV"
-$appKey = "3pbyqwZIOotJmlfFKL1vFt2jzYUOurJ3xPd2irhX"
+$appId = "-"
+$appKey = "-"
 $fileApi_prefix = "https://api.parse.com/1/files/"
 $objectApi = "https://api.parse.com/1/classes/Faces"
 
