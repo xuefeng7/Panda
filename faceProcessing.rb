@@ -7,6 +7,7 @@ require 'json'
 require 'uri'
 require "open-uri"
 require "mini_magick"
+require 'simple_progressbar'
 
 #Microsoft API keys
 $subscription_key = "-"
@@ -62,8 +63,8 @@ end
 
 ### given face landmark points, crop out the eyes outline 
 ## - params: image, response data from Microsoft face detection server
-## - return: 
-def cropEyesFromFace(url, face)
+## - return: cropped image 
+def cropEyesFromFace(url, face)   #TODO: deal with multiple faces
 	#open a image file from url
 	image = MiniMagick::Image.open(url)
 	#get face landmarks, only one face in each training data
@@ -92,13 +93,19 @@ faces = makeFaceObjectGetRequest() # JSON object list
 
 puts "request face objects done."
 puts "requesting face landmarks and cropping...(totoal: #{faces.length})"
-for face in faces
-	faceMarks = makeFaceDectectionPostRequest(face['picture']['url'])
-	output = cropEyesFromFace(face['picture']['url'], faceMarks)
-	#original file name xx_xx_xx.png, need to add class(ie.neg/pos)
-	rename = face['name'].split(".")[0] + "_" + "#{face['class']}.png"
-	output.write "Eyes/#{rename}"
-	#Microsoft face api rate limit 20 req/min, 3 sec per face
-	sleep 3.5
+
+SimpleProgressbar.new.show("Working") do
+  (0..faces.length).each {|i|
+  		face = faces[i]
+		faceMarks = makeFaceDectectionPostRequest(face['picture']['url'])
+		output = cropEyesFromFace(face['picture']['url'], faceMarks)
+		#original file name xx_xx_xx.png, need to add class(ie.neg/pos)
+		rename = face['name'].split(".")[0] + "_" + "#{face['class']}.png"
+		output.write "Eyes/#{rename}"
+		#show progress
+		progress i.to_f / faces.length
+		#Microsoft face api rate limit 20 req/min, 3 sec per face
+		sleep 3.5
+  }
 end
 puts "work done, yay!"
