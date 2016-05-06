@@ -1,0 +1,96 @@
+twitter:
+---------------------
+total selfies: 32615
+total faces: 51134
+selfie has most faces: 42
+url: http://pbs.twimg.com/media/CB6iIGvUMAANmFT.jpg
+youngest face: 0
+url: http://pbs.twimg.com/media/Bg9TI8vIEAAMudv.jpg
+oldest face: 66; url:http://pbs.twimg.com/media/CgpO5YWWkAAgA-B.jpg
+url: http://pbs.twimg.com/media/CgpO5YWWkAAgA-B.jpg
+male:17525; female:33609
+0: 4245 [935 3310] [1627 232 2386]
+1: 14985 [3233 11752] [4805 796 9384]
+2: 18255 [6200 12055] [4086 1148 13021]
+3: 10662 [5275 5387] [1729 834 8099]
+4: 1986 [1169 817] [292 195 1499]
+5: 755 [534 221] [93 80 582]
+6: 246 [179 67] [23 17 206]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:12655; [male:3260, female:9395]
+Black:3302; [male:1708, female:1594]
+White:35177; [male:12557, female:22620]
+Glass:4673; Non-glass: 46461
+---------------------
+positive sample with highest confidence: 99.8878
+url: http://pbs.twimg.com/media/CgZiQ0mVAAAyan6.jpg
+negative sample with highest confidence: 99.9232
+url: http://pbs.twimg.com/media/Cgfh8rKWsAA_vWs.jpg
+male:8020; female:10646
+0: 1281 [307 974] [400 97 784]
+1: 4812 [1251 3561] [1225 398 3189]
+2: 6177 [2634 3543] [1185 544 4448]
+3: 4703 [2704 1999] [609 500 3594]
+4: 1089 [668 421] [128 120 841]
+5: 435 [325 110] [52 52 331]
+6: 169 [131 38] [16 11 142]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:3615; [male:1232, female:2383]
+Black:1722; [male:983, female:739]
+White:13329; [male:5805, female:7524]
+Glass:2582; Non-glass: 16084
+#######################################
+tumblr:
+---------------------
+total selfies: 39156
+total faces: 47923
+selfie has most faces: 29
+url: https://40.media.tumblr.com/84ceb2cdd33a0028867a1655879ea6a8/tumblr_n406zdnaje1qe5yljo1_400.jpg
+youngest face: 0
+url: https://40.media.tumblr.com/10addda2ce83f77f4e7b94ee79fc8786/tumblr_n186u8lSs41se338qo1_400.jpg
+oldest face: 66; url:https://40.media.tumblr.com/0d6f80b29634656be634b98c2e698627/tumblr_o5oj6eu0KM1rpggbpo1_400.jpg
+url: https://40.media.tumblr.com/0d6f80b29634656be634b98c2e698627/tumblr_o5oj6eu0KM1rpggbpo1_400.jpg
+male:12356; female:35567
+0: 5186 [840 4346] [1533 334 3319]
+1: 18734 [3500 15234] [4561 1033 13140]
+2: 16426 [4577 11849] [3532 974 11920]
+3: 6160 [2664 3496] [1154 525 4481]
+4: 1029 [542 487] [174 117 738]
+5: 288 [159 129] [41 32 215]
+6: 100 [74 26] [10 13 77]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:11005; [male:2666, female:8339]
+Black:3028; [male:1117, female:1911]
+White:33890; [male:8573, female:25317]
+Glass:5918; Non-glass: 42005
+---------------------
+positive sample with highest confidence: 99.8148
+url: https://41.media.tumblr.com/effb989ff760083c9f7538fd3ea2321c/tumblr_n419o3BdsQ1stwc5xo1_400.jpg
+negative sample with highest confidence: 99.9657
+url: https://41.media.tumblr.com/b5a1f9aea776ce3344ef8ee748dc009f/tumblr_nmltop0roO1qchfqvo1_400.jpg
+male:5338; female:12258
+0: 1855 [314 1541] [540 164 1151]
+1: 6532 [1422 5110] [1554 488 4490]
+2: 5884 [1910 3974] [1202 512 4170]
+3: 2598 [1265 1333] [441 304 1853]
+4: 510 [277 233] [83 75 352]
+5: 158 [102 56] [23 19 116]
+6: 59 [48 11] [5 12 42]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:3848; [male:1077, female:2771]
+Black:1574; [male:667, female:907]
+White:12174; [male:3594, female:8580]
+Glass:3491; Non-glass: 14105
+#######################################

@@ -1,0 +1,48 @@
+sum:
+---------------------
+total selfies: 71771
+total faces: 99057
+selfie has most faces: 42
+url: http://pbs.twimg.com/media/CB6iIGvUMAANmFT.jpg
+youngest face: 0
+url: http://pbs.twimg.com/media/Bg9TI8vIEAAMudv.jpg
+oldest face: 66; url:http://pbs.twimg.com/media/CgpO5YWWkAAgA-B.jpg
+url: http://pbs.twimg.com/media/CgpO5YWWkAAgA-B.jpg
+male:29881; female:69176
+0: 9431 [1775 7656] [3160 566 5705]
+1: 33719 [6733 26986] [9366 1829 22524]
+2: 34681 [10777 23904] [7618 2122 24941]
+3: 16822 [7939 8883] [2883 1359 12580]
+4: 3015 [1711 1304] [466 312 2237]
+5: 1043 [693 350] [134 112 797]
+6: 346 [253 93] [33 30 283]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:23660; [male:5926, female:17734]
+Black:6330; [male:2825, female:3505]
+White:69067; [male:21130, female:47937]
+Glass:10591; Non-glass: 88466
+---------------------
+positive sample with highest confidence: 99.8878
+url: http://pbs.twimg.com/media/CgZiQ0mVAAAyan6.jpg
+negative sample with highest confidence: 99.9657
+url: https://41.media.tumblr.com/b5a1f9aea776ce3344ef8ee748dc009f/tumblr_nmltop0roO1qchfqvo1_400.jpg
+male:13358; female:22904
+0: 3136 [621 2515] [940 261 1935]
+1: 11344 [2673 8671] [2779 886 7679]
+2: 12061 [4544 7517] [2387 1056 8618]
+3: 7301 [3969 3332] [1050 804 5447]
+4: 1599 [945 654] [211 195 1193]
+5: 593 [427 166] [75 71 447]
+6: 228 [179 49] [21 23 184]
+7: 0 [0 0] [0 0 0]
+8: 0 [0 0] [0 0 0]
+9: 0 [0 0] [0 0 0]
+10: 0 [0 0] [0 0 0]
+Asian:7463; [male:2309, female:5154]
+Black:3296; [male:1650, female:1646]
+White:25503; [male:9399, female:16104]
+Glass:6073; Non-glass: 30189
+#######################################
