@@ -10,4 +10,10 @@
   Periorbital Hyperpigmentation can be commonly found among people nowadays. From medical perspective, the appearance of POH is related to many factors such as stress, sleep deprivation, and etc[3]. Similary, Periorbital Puffiness (PP), sometimes refers to Periorbital Oedema, also indicates health related issues. Thus, it is pragmatic to study POH and PP populations to acquire insights on the distributions of such symptoms in accordance with age, gender, and race, and apply these distributions for certain medical purposes.
   <br>To find those distributions, computer vision combined with data mining techniques were utilized. We rst obtained the training faces from Color FERET databse, and applied dense sift as the feature extractor on the interest areas of each face. Then, SVM(support vector machine) was employed to classify the faces from with and without POH or PP.
   <br>Finally, over 150,000 sele-tagged posts on Twitter and Tumblr have been analyzed, and the result will be presented in the results section.
-## Files
+## Main Directories
+1. Data acquisition(Ruby)
+  Include the ruby files for processing the facial images received from Color FERET database and searching selfies on Twitter, Tumbrl and Flickr. 
+2. Binary classification app(Swift)
+  Include the Xcode project that implements the binary classification app, it can be used just like Tinder.
+3. Model and prediction(Matlab)
+  Include the SVM training and predicting files.
