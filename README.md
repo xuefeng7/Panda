@@ -1,5 +1,4 @@
-![panda](https://github.com/xuefeng7/Panda/blob/master/logo.png "Panda")
-# Panda
+# Panda ![panda](https://github.com/xuefeng7/Panda/blob/master/logo.png "Panda")
 ## Goal
   This project focuses on analyzing the periorbital hyperpigmentation and puffiness of faces on social media. The future work tends to establish a strong correlation between the periorbital hyperpigmentation and puffiness and sleeping condition.
 ## Current works
