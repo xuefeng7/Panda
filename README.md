@@ -12,8 +12,8 @@
   <br>Finally, over 150,000 sele-tagged posts on Twitter and Tumblr have been analyzed, and the result will be presented in the results section.
 ## Main Directories
 1. Data acquisition(Ruby)
-  Include the ruby files for processing the facial images received from Color FERET database and searching selfies on Twitter, Tumbrl and Flickr. 
+  <br>Include the ruby files for processing the facial images received from Color FERET database and searching selfies on Twitter, Tumbrl and Flickr. 
 2. Binary classification app(Swift)
-  Include the Xcode project that implements the binary classification app, it can be used just like Tinder.
+  <br>Include the Xcode project that implements the binary classification app, it can be used just like Tinder.
 3. Model and prediction(Matlab)
-  Include the SVM training and predicting files.
+  <br>Include the SVM training and predicting files.
