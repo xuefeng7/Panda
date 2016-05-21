@@ -1,11 +1,51 @@
 ### This file query social media Twitter for certain tagged images
 ### Ideally, we will collect the url and location(optional) of the image
 
+## HOW TO RUN THIS FILE
+## When you first run this script, set input command line arg to ""
+## Otherwise, set the arg to be "stopId", where you can find in a separate file named stopId.txt
+## More specifically, the twitter api will return the posts in recent 15 days, but once you triggered the 
+## the first search among a 15-day, you don't want to obtain the duplicate posts in your second or third search 
+## in order to achieve this, we need to set the stopId, where the stopId is the first line of
+## number(ie. maxId) in the std ouput.
+## if there has no more post within a search, the std ouput text will notify you such situation.
+
+## NOTE THAT
+## getTweetsByWindow will do multiple searches in a given amount of window(15 mins), e.g getTweetsByWindow(4,"") 
+## stands for 60 mins.
+## the max_id will be automatically found and be used for the next search.
+## The only thing that you should do is set the stopId for each run of this script. 
+
 require 'net/http'
 require 'json'
 require 'uri'
 require "open-uri"
 require "base64"
+
+### Note, first request shall contains the count of the tweets
+### and the low_id should be tracked. For the subsequent request, 
+### specify the low_id as the max_id for request, so no duplicates tweets will be retreieved.
+
+$stopId = "0" # if arg is "", stopId is 0
+## helper method for numeric check
+def is_number? string
+  true if Float(string) rescue false
+end
+
+if ARGV.length != 1 
+	puts "one arg is required"
+	exit
+else
+	arg = ARGV[0]
+	if is_number?(arg) && arg.length == 18 # size of maxId
+		$stopId = arg
+	elsif arg.eql? ""
+		# ignore
+	else
+		puts "invalid arg"
+		exit
+	end
+end
 
 #Twitter api keys
 consumer_key = "yBH5FlKN8vU79EMWNJtJkjcvI"
@@ -36,11 +76,18 @@ $access_token = JSON.parse(res.body)['access_token']
 $tweets = File.open("twitter_tag=selfie.txt", 'a+')
 # record the running total of effective tweets acqureied
 $counter = 0
-### Note, first request shall contains the count of the tweets
-### and the low_id should be tracked. For the subsequent request, 
-### specify the low_id as the max_id for request, so no duplicates tweets will be retreieved.
 
-$stopId = "725315663447863296"
+#$stopIdFile = File.open("stopId.txt", 'a+')
+
+### record the current search maxId
+## - param: maxId
+## - return: nil
+def recordMaxId(max_id)
+	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
+	time = Time.new
+	date = "#{time.day}/#{time.month}/#{time.year}"
+	File.write(f = "stopId.txt", File.read(f).gsub(/twitter:\d{18}/,"twitter:#{max_id}	#{date}"))
+end
 
 ### rate limit: 450 reqs/15mins
 ### max results per page: 100
@@ -80,16 +127,22 @@ def searchTweetByKeyword(keyword, type, geo_str, max_id)
 	return JSON.parse(res.body)["statuses"]
 end
 
-
 ### Compute the low id as the max_id for next request
 ## - param: data
-## - return: low id for current request 
+## - return: low id for current request
+$IdCounter = 0
 def getMaxId(tweets)
 	ids = []
 	for tweet in tweets
 		ids << tweet["id"].to_i
 	end
-	return ids.min
+	maxId = ids.min
+	$IdCounter += 1
+	if $IdCounter == 1
+		# record the first max id
+		recordMaxId(maxId)
+	end
+	return maxId
 end
 ### Process received tweets and write all collcted info into text file
 ## - param: data

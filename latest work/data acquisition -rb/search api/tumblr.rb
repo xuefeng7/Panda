@@ -7,13 +7,44 @@ require 'uri'
 require "open-uri"
 require "base64"
 
+$stopStamp = "0" # if arg is "", stopId is 0
+## helper method for numeric check
+def is_number? string
+  true if Float(string) rescue false
+end
+
+if ARGV.length != 1 
+	puts "one arg is required"
+	exit
+else
+	arg = ARGV[0]
+	if is_number?(arg) && arg.length == 10 # size of time stamp
+		$stopId = arg
+	elsif arg.eql? ""
+		# ignore
+	else
+		puts "invalid arg"
+		exit
+	end
+end
+
 # tumblr api key
 $api_key = "RhCH9qrKIjJrFEBVEZLSzY8YIEc7DMVdyFFIxzsTwUO4BobCVb"
 #txt file that stores all resulting image url
 $posts = File.open("tumblr.txt", 'a+')
 #totoal posts acquired
 $counter = 0
-$stopStamp = "1428372518"
+
+### record the current search maxId
+## - param: maxId
+## - return: nil
+def recordMaxId(time_stamp)
+	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
+	time = Time.new
+	date = "#{time.day}/#{time.month}/#{time.year}"
+	File.write(f = "stopId.txt", File.read(f).gsub(/tumblr:\d{10}/,"tumblr:#{time_stamp}	#{date}"))
+end
+
 ### Search posts from Tumblr
 ### Each request returns 20 results
 ## - params: tag 
@@ -62,12 +93,19 @@ end
 ### Find the min timestamp as next request's query param (pagination)
 ## - params: posts
 ## - return: timestamp
+$stampCounter = 0
 def getMinTimeStamp(posts)
 	stamps = []
 	for post in posts
 		stamps << post["timestamp"].to_i
 	end
-	return stamps.min
+	stamp = stamps.min
+	$stampCounter += 1
+	if $stampCounter == 1
+		# record the first max id
+		recordMaxId(stamp)
+	end
+	return stamp
 end
 
 def searchPostFor(sec, timestamp)
@@ -82,12 +120,12 @@ def searchPostFor(sec, timestamp)
 			isFirstSearch = false
 		else
 			timeStamp = getMinTimeStamp(posts)
-			#if timeStamp <= $stopStamp.to_i then
+			if timeStamp > $stopStamp.to_i then
 				posts = searchPostByTag(tag, timeStamp)
-			#else
-			#	puts "stop id encountered"
-			#	exit
-			#end
+			else
+				puts "stop id encountered"
+				exit
+			end
 		end
 		processPosts(posts)
 		sec_step -= 1
