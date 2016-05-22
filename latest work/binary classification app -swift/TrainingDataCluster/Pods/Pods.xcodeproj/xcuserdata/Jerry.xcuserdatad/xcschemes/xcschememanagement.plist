@@ -9,17 +9,47 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JTMaterialSwitch-JTMaterialSwitch.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JTMaterialSwitch.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JTSImageViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TrainingDataCluster.xcscheme</key>
+		<key>Pods-Panda.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SVProgressHUD.xcscheme</key>
+		<key>Pods-PandaTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-PandaUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>StepSlider.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,12 +57,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>20090496F8F813EC35DA957F691117D3</key>
+		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
+		<key>35B617F8B0851DCDF666A4909092E791</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56C920A3103B1F658928A351250AEE9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>626D49AD18621B0A3059EE726B27AE89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7AB86C6BACCB77B525C30E31129AF5CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>96ABEE8188667303F63EF2B54831F1B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB239564148481E8F6676E5284AAD29C</key>
+		<key>C2550C2DDD8A3B6A86481A5A031BFE6F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D61C12FFB6540137A29D3EDA45A155CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FAE26C46CFBAF39E4C96ABF16B93D9FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

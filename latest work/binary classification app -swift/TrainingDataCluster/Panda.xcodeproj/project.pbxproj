@@ -1,0 +1,717 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30BE435F59D18DF9DA4EFEE8 /* Pods_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */; };
+		ABBCBFD0EB9D1FEB1245F5C9 /* Pods_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */; };
+		C4E1C6611CB08A0600518B37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6601CB08A0600518B37 /* AppDelegate.swift */; };
+		C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6621CB08A0600518B37 /* ViewController.swift */; };
+		C4E1C6661CB08A0600518B37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E1C6641CB08A0600518B37 /* Main.storyboard */; };
+		C4E1C6681CB08A0600518B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E1C6671CB08A0600518B37 /* Assets.xcassets */; };
+		C4E1C66B1CB08A0600518B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E1C6691CB08A0600518B37 /* LaunchScreen.storyboard */; };
+		C4E1C6761CB08A0600518B37 /* TrainingDataClusterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6751CB08A0600518B37 /* TrainingDataClusterTests.swift */; };
+		C4E1C6811CB08A0600518B37 /* TrainingDataClusterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6801CB08A0600518B37 /* TrainingDataClusterUITests.swift */; };
+		E19BD11EB40415152794DC93 /* Pods_Panda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF5DB060687566E56B3E97F /* Pods_Panda.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C4E1C6721CB08A0600518B37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4E1C6551CB08A0600518B37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4E1C65C1CB08A0600518B37;
+			remoteInfo = TrainingDataCluster;
+		};
+		C4E1C67D1CB08A0600518B37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4E1C6551CB08A0600518B37 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4E1C65C1CB08A0600518B37;
+			remoteInfo = TrainingDataCluster;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		14588CBDA11AC7FA4D4C4894 /* Pods-PandaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandaUITests/Pods-PandaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		345B05AF8BA120C5223EAFEC /* Pods-PandaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3848B2399AA110075A077200 /* Pods-Panda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panda.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panda/Pods-Panda.release.xcconfig"; sourceTree = "<group>"; };
+		60DF9DE1CFB8D95B17A994CE /* Pods-PandaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PandaUITests/Pods-PandaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6307850C851211F8E27AA4EB /* Pods-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
+		8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BF5DB060687566E56B3E97F /* Pods_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4AD102D1CB0BD3600D98135 /* TrainingDataCluster-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrainingDataCluster-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		C4E1C65D1CB08A0600518B37 /* Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panda.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E1C6601CB08A0600518B37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C4E1C6621CB08A0600518B37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C4E1C6651CB08A0600518B37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4E1C6671CB08A0600518B37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C4E1C66A1CB08A0600518B37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C4E1C66C1CB08A0600518B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4E1C6711CB08A0600518B37 /* Panda.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panda.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E1C6751CB08A0600518B37 /* TrainingDataClusterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDataClusterTests.swift; sourceTree = "<group>"; };
+		C4E1C6771CB08A0600518B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4E1C67C1CB08A0600518B37 /* Panda.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panda.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E1C6801CB08A0600518B37 /* TrainingDataClusterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDataClusterUITests.swift; sourceTree = "<group>"; };
+		C4E1C6821CB08A0600518B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D35F2D630059487A4A2D95CE /* Pods-Panda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panda.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Panda/Pods-Panda.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C4E1C65A1CB08A0600518B37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E19BD11EB40415152794DC93 /* Pods_Panda.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C66E1CB08A0600518B37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABBCBFD0EB9D1FEB1245F5C9 /* Pods_PandaTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C6791CB08A0600518B37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30BE435F59D18DF9DA4EFEE8 /* Pods_PandaUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A7DBB02D9D45BFD12FD5263 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D35F2D630059487A4A2D95CE /* Pods-Panda.debug.xcconfig */,
+				3848B2399AA110075A077200 /* Pods-Panda.release.xcconfig */,
+				345B05AF8BA120C5223EAFEC /* Pods-PandaTests.debug.xcconfig */,
+				6307850C851211F8E27AA4EB /* Pods-PandaTests.release.xcconfig */,
+				60DF9DE1CFB8D95B17A994CE /* Pods-PandaUITests.debug.xcconfig */,
+				14588CBDA11AC7FA4D4C4894 /* Pods-PandaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C4E1C6541CB08A0600518B37 = {
+			isa = PBXGroup;
+			children = (
+				C4E1C65F1CB08A0600518B37 /* TrainingDataCluster */,
+				C4E1C6741CB08A0600518B37 /* TrainingDataClusterTests */,
+				C4E1C67F1CB08A0600518B37 /* TrainingDataClusterUITests */,
+				C4E1C65E1CB08A0600518B37 /* Products */,
+				1A7DBB02D9D45BFD12FD5263 /* Pods */,
+				FBB9384AFB33A55745F6216A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C4E1C65E1CB08A0600518B37 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1C65D1CB08A0600518B37 /* Panda.app */,
+				C4E1C6711CB08A0600518B37 /* Panda.xctest */,
+				C4E1C67C1CB08A0600518B37 /* Panda.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4E1C65F1CB08A0600518B37 /* TrainingDataCluster */ = {
+			isa = PBXGroup;
+			children = (
+				C4AD102D1CB0BD3600D98135 /* TrainingDataCluster-Bridging-Header.h */,
+				C4E1C6601CB08A0600518B37 /* AppDelegate.swift */,
+				C4E1C6621CB08A0600518B37 /* ViewController.swift */,
+				C4E1C6641CB08A0600518B37 /* Main.storyboard */,
+				C4E1C6671CB08A0600518B37 /* Assets.xcassets */,
+				C4E1C6691CB08A0600518B37 /* LaunchScreen.storyboard */,
+				C4E1C66C1CB08A0600518B37 /* Info.plist */,
+			);
+			path = TrainingDataCluster;
+			sourceTree = "<group>";
+		};
+		C4E1C6741CB08A0600518B37 /* TrainingDataClusterTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1C6751CB08A0600518B37 /* TrainingDataClusterTests.swift */,
+				C4E1C6771CB08A0600518B37 /* Info.plist */,
+			);
+			path = TrainingDataClusterTests;
+			sourceTree = "<group>";
+		};
+		C4E1C67F1CB08A0600518B37 /* TrainingDataClusterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1C6801CB08A0600518B37 /* TrainingDataClusterUITests.swift */,
+				C4E1C6821CB08A0600518B37 /* Info.plist */,
+			);
+			path = TrainingDataClusterUITests;
+			sourceTree = "<group>";
+		};
+		FBB9384AFB33A55745F6216A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BF5DB060687566E56B3E97F /* Pods_Panda.framework */,
+				8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */,
+				187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C4E1C65C1CB08A0600518B37 /* Panda */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4E1C6851CB08A0600518B37 /* Build configuration list for PBXNativeTarget "Panda" */;
+			buildPhases = (
+				AC9085EEC8377EF9EEBC66C1 /* 📦 Check Pods Manifest.lock */,
+				C4E1C6591CB08A0600518B37 /* Sources */,
+				C4E1C65A1CB08A0600518B37 /* Frameworks */,
+				C4E1C65B1CB08A0600518B37 /* Resources */,
+				251143632C8B4CCD594048FA /* 📦 Embed Pods Frameworks */,
+				AB3ED3BC7E753B5ADEF4F75D /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Panda;
+			productName = TrainingDataCluster;
+			productReference = C4E1C65D1CB08A0600518B37 /* Panda.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C4E1C6701CB08A0600518B37 /* PandaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4E1C6881CB08A0600518B37 /* Build configuration list for PBXNativeTarget "PandaTests" */;
+			buildPhases = (
+				C5BB7A02D24EB155D2A86C97 /* 📦 Check Pods Manifest.lock */,
+				C4E1C66D1CB08A0600518B37 /* Sources */,
+				C4E1C66E1CB08A0600518B37 /* Frameworks */,
+				C4E1C66F1CB08A0600518B37 /* Resources */,
+				CECBFA3206F89B1E03045787 /* 📦 Embed Pods Frameworks */,
+				5D437A8D9C9CB58E486169F3 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4E1C6731CB08A0600518B37 /* PBXTargetDependency */,
+			);
+			name = PandaTests;
+			productName = TrainingDataClusterTests;
+			productReference = C4E1C6711CB08A0600518B37 /* Panda.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C4E1C67B1CB08A0600518B37 /* PandaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4E1C68B1CB08A0600518B37 /* Build configuration list for PBXNativeTarget "PandaUITests" */;
+			buildPhases = (
+				1B5B39C9A2C365463BD05936 /* 📦 Check Pods Manifest.lock */,
+				C4E1C6781CB08A0600518B37 /* Sources */,
+				C4E1C6791CB08A0600518B37 /* Frameworks */,
+				C4E1C67A1CB08A0600518B37 /* Resources */,
+				77B1D105359B7541EB8DCA73 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4E1C67E1CB08A0600518B37 /* PBXTargetDependency */,
+			);
+			name = PandaUITests;
+			productName = TrainingDataClusterUITests;
+			productReference = C4E1C67C1CB08A0600518B37 /* Panda.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C4E1C6551CB08A0600518B37 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = XFOffice;
+				TargetAttributes = {
+					C4E1C65C1CB08A0600518B37 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 54CZF8CF37;
+					};
+					C4E1C6701CB08A0600518B37 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = C4E1C65C1CB08A0600518B37;
+					};
+					C4E1C67B1CB08A0600518B37 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = C4E1C65C1CB08A0600518B37;
+					};
+				};
+			};
+			buildConfigurationList = C4E1C6581CB08A0600518B37 /* Build configuration list for PBXProject "Panda" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C4E1C6541CB08A0600518B37;
+			productRefGroup = C4E1C65E1CB08A0600518B37 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C4E1C65C1CB08A0600518B37 /* Panda */,
+				C4E1C6701CB08A0600518B37 /* PandaTests */,
+				C4E1C67B1CB08A0600518B37 /* PandaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C4E1C65B1CB08A0600518B37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4E1C66B1CB08A0600518B37 /* LaunchScreen.storyboard in Resources */,
+				C4E1C6681CB08A0600518B37 /* Assets.xcassets in Resources */,
+				C4E1C6661CB08A0600518B37 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C66F1CB08A0600518B37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C67A1CB08A0600518B37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B5B39C9A2C365463BD05936 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		251143632C8B4CCD594048FA /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panda/Pods-Panda-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D437A8D9C9CB58E486169F3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77B1D105359B7541EB8DCA73 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandaUITests/Pods-PandaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB3ED3BC7E753B5ADEF4F75D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panda/Pods-Panda-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC9085EEC8377EF9EEBC66C1 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C5BB7A02D24EB155D2A86C97 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CECBFA3206F89B1E03045787 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4E1C6591CB08A0600518B37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */,
+				C4E1C6611CB08A0600518B37 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C66D1CB08A0600518B37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4E1C6761CB08A0600518B37 /* TrainingDataClusterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E1C6781CB08A0600518B37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4E1C6811CB08A0600518B37 /* TrainingDataClusterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C4E1C6731CB08A0600518B37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4E1C65C1CB08A0600518B37 /* Panda */;
+			targetProxy = C4E1C6721CB08A0600518B37 /* PBXContainerItemProxy */;
+		};
+		C4E1C67E1CB08A0600518B37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4E1C65C1CB08A0600518B37 /* Panda */;
+			targetProxy = C4E1C67D1CB08A0600518B37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C4E1C6641CB08A0600518B37 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4E1C6651CB08A0600518B37 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C4E1C6691CB08A0600518B37 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4E1C66A1CB08A0600518B37 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C4E1C6831CB08A0600518B37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C4E1C6841CB08A0600518B37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C4E1C6861CB08A0600518B37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D35F2D630059487A4A2D95CE /* Pods-Panda.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = TrainingDataCluster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataCluster;
+				PRODUCT_NAME = Panda;
+				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrainingDataCluster-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C4E1C6871CB08A0600518B37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3848B2399AA110075A077200 /* Pods-Panda.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = TrainingDataCluster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataCluster;
+				PRODUCT_NAME = Panda;
+				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrainingDataCluster-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C4E1C6891CB08A0600518B37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 345B05AF8BA120C5223EAFEC /* Pods-PandaTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TrainingDataClusterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataClusterTests;
+				PRODUCT_NAME = Panda;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panda.app/Panda";
+			};
+			name = Debug;
+		};
+		C4E1C68A1CB08A0600518B37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6307850C851211F8E27AA4EB /* Pods-PandaTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TrainingDataClusterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataClusterTests;
+				PRODUCT_NAME = Panda;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panda.app/Panda";
+			};
+			name = Release;
+		};
+		C4E1C68C1CB08A0600518B37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60DF9DE1CFB8D95B17A994CE /* Pods-PandaUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = TrainingDataClusterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataClusterUITests;
+				PRODUCT_NAME = Panda;
+				TEST_TARGET_NAME = TrainingDataCluster;
+			};
+			name = Debug;
+		};
+		C4E1C68D1CB08A0600518B37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14588CBDA11AC7FA4D4C4894 /* Pods-PandaUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = TrainingDataClusterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataClusterUITests;
+				PRODUCT_NAME = Panda;
+				TEST_TARGET_NAME = TrainingDataCluster;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C4E1C6581CB08A0600518B37 /* Build configuration list for PBXProject "Panda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4E1C6831CB08A0600518B37 /* Debug */,
+				C4E1C6841CB08A0600518B37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4E1C6851CB08A0600518B37 /* Build configuration list for PBXNativeTarget "Panda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4E1C6861CB08A0600518B37 /* Debug */,
+				C4E1C6871CB08A0600518B37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4E1C6881CB08A0600518B37 /* Build configuration list for PBXNativeTarget "PandaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4E1C6891CB08A0600518B37 /* Debug */,
+				C4E1C68A1CB08A0600518B37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4E1C68B1CB08A0600518B37 /* Build configuration list for PBXNativeTarget "PandaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4E1C68C1CB08A0600518B37 /* Debug */,
+				C4E1C68D1CB08A0600518B37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C4E1C6551CB08A0600518B37 /* Project object */;
+}

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:TrainingDataCluster.xcodeproj">
+      location = "group:/Users/Jerry/Desktop/ProjectEye/latest work/binary classification app -swift/TrainingDataCluster/Panda.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

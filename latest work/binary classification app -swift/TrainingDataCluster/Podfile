@@ -3,16 +3,19 @@ platform :ios, '9.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 
-target 'TrainingDataCluster' do
+target 'Panda' do
 pod 'Parse'
-pod 'SVProgressHUD'
+pod 'NVActivityIndicatorView'
+pod 'JTSImageViewController'
+pod 'JTMaterialSwitch'
+pod 'StepSlider'
 end
 
-target 'TrainingDataClusterTests' do
+target 'PandaTests' do
 
 end
 
-target 'TrainingDataClusterUITests' do
+target 'PandaUITests' do
 
 end
 

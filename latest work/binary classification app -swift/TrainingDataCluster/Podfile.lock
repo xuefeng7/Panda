@@ -1,16 +1,27 @@
 PODS:
   - Bolts/Tasks (1.7.0)
+  - JTMaterialSwitch (1.1)
+  - JTSImageViewController (1.5.1)
+  - NVActivityIndicatorView (2.6)
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
-  - SVProgressHUD (2.0.2)
+  - StepSlider (0.1.2)
 
 DEPENDENCIES:
+  - JTMaterialSwitch
+  - JTSImageViewController
+  - NVActivityIndicatorView
   - Parse
-  - SVProgressHUD
+  - StepSlider
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  JTMaterialSwitch: cad8093c3773ff9f6c60005c98d269eb869b5e04
+  JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
+  NVActivityIndicatorView: b8207b369c012af32da0916a8346a56d16a5fbbe
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  SVProgressHUD: e4020e23badbd7cc61bc4a80d3c1da57f166a978
+  StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 58e3cfec21e0c9dc267cc330f5ebda019db978ed
+
+COCOAPODS: 1.0.0
