@@ -28,13 +28,16 @@
                                 <rect key="frame" x="20" y="11" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.48320244979999999" green="0.83991063359999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="openInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fZb-Gw-8zi"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261" y="341"/>
+            <point key="canvasLocation" x="1297" y="337"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u9Y-ZT-2di">

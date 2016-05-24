@@ -6,6 +6,7 @@ PODS:
   - Parse (1.13.0):
     - Bolts/Tasks (~> 1.6)
   - StepSlider (0.1.2)
+  - SVWebViewController (1.0)
 
 DEPENDENCIES:
   - JTMaterialSwitch
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - Parse
   - StepSlider
+  - SVWebViewController
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: b8207b369c012af32da0916a8346a56d16a5fbbe
   Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
   StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
+  SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
 
-PODFILE CHECKSUM: 58e3cfec21e0c9dc267cc330f5ebda019db978ed
+PODFILE CHECKSUM: a5d89261e97ae15d594b695d46da27c90693a942
 
 COCOAPODS: 1.0.0

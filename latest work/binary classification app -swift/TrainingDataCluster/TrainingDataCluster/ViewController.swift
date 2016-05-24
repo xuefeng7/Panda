@@ -12,6 +12,7 @@ import NVActivityIndicatorView
 import JTSImageViewController
 import StepSlider
 import JTMaterialSwitch
+import SVWebViewController
 
 class ViewController: UIViewController {
     
@@ -33,6 +34,11 @@ class ViewController: UIViewController {
     var imageViewer: JTSImageViewController!
     var loadingIndicator: NVActivityIndicatorView!
     var refreshBtn: UIButton!
+    
+    @IBAction func openInfo(sender: AnyObject) {
+        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-xvnufxdmg3zx/K7ORiRbC3IScCDUotgBy7WnvIYkxI7WzkiaApCcf.html")
+        self.presentViewController(webViewer, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         

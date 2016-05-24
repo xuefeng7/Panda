@@ -9,6 +9,7 @@ pod 'NVActivityIndicatorView'
 pod 'JTSImageViewController'
 pod 'JTMaterialSwitch'
 pod 'StepSlider'
+pod 'SVWebViewController'
 end
 
 target 'PandaTests' do

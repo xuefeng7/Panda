@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CC7C13ED4DB63442222BFB4D2244556E'
-               BlueprintName = 'StepSlider'
+               BlueprintIdentifier = '9380B0DE8EC94E8FC78D2A97D1A829B4'
+               BlueprintName = 'SVWebViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'StepSlider.framework'>
+               BuildableName = 'SVWebViewController.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
