@@ -77,8 +77,6 @@ $tweets = File.open("twitter_tag=selfie.txt", 'a+')
 # record the running total of effective tweets acqureied
 $counter = 0
 
-#$stopIdFile = File.open("stopId.txt", 'a+')
-
 ### record the current search maxId
 ## - param: maxId
 ## - return: nil
@@ -123,7 +121,6 @@ def searchTweetByKeyword(keyword, type, geo_str, max_id)
 		#no quota
 		exit 
 	end
-	#puts res.body
 	return JSON.parse(res.body)["statuses"]
 end
 
@@ -154,10 +151,9 @@ def processTweets(tweets)
 		exit
 	end
 	for tweet in tweets
-		#puts tweet
 		if tweet["entities"].has_key? "media" then
 			$counter += 1
-			$tweets.write("#{tweet["entities"]["media"][0]["media_url"]}\n")
+			$tweets.write("{\"url\":\"#{tweet["entities"]["media"][0]["media_url"]}\",\"user\":\"#{tweet["user"]["id"]}\"}\n")
 		end
 	end
 end

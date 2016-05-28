@@ -82,7 +82,8 @@ def processPosts(posts)
 			#obtain url
 			$counter += 1
 			url = post["photos"][0]["alt_sizes"][2]["url"] #get image with wdith 400
-			$posts.write(url + "\n")
+			blogId = post["id"]
+			$posts.write("{\"url\":\"#{url}\", \"blog_Id\":\"#{blogId}\"}" + "\n")
 		end
 	end
 end
