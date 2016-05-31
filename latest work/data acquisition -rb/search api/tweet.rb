@@ -145,11 +145,6 @@ end
 ## - param: data
 ## - return: nil 
 def processTweets(tweets)
-	if tweets.length == 0 then
-		#no more tweets
-		puts "no more tweets"
-		exit
-	end
 	for tweet in tweets
 		if tweet["entities"].has_key? "media" then
 			$counter += 1

@@ -4,27 +4,6 @@ require 'uri'
 require "open-uri"
 require "base64"
 
-# Setting up initial ID
-$stopId = "0" 
-def is_number? string
-  true if Float(string) rescue false
-end
-
-if ARGV.length != 1 
-	puts "one arg is required"
-	exit
-else
-	arg = ARGV[0]
-	if is_number?(arg) && arg.length == 18 # size of maxId
-		$stopId = arg
-	elsif arg.eql? ""
-		# ignore
-	else
-		puts "invalid arg"
-		exit
-	end
-end
-
 # Authen
 consumer_key = "yBH5FlKN8vU79EMWNJtJkjcvI"
 consumer_secret = "tHiu4tP1h5WCZRrOVMkhLBY1gJSHzaT7kfUtIE3FF03mhUO7wY"
@@ -51,33 +30,13 @@ $access_token = JSON.parse(res.body)['access_token']
 
 
 $tweets = File.open("timeline.txt", 'a+')
-# record the running total of effective tweets acqureied
-$counter = 0
-
-# Update Stop Id
-def recordMaxId(max_id)
-	time = Time.new
-	date = "#{time.day}/#{time.month}/#{time.year}"
-	File.write(f = "timeline_stopId.txt", File.read(f).gsub(/twitter:\d{18}/,"twitter:#{max_id}	#{date}"))
-end
 
 # Search timeline by keyword
-def searchTimelineByKeyword(keyword, type, geo_str, max_id)
-	puts "max_id.#{max_id}, running total.#{$counter}"
-	url = "https://api.twitter.com/1.1/search/tweets.json?q="
-	#geo location check
-	if geo_str != "" then
-		#%23#{keyword}+filter:#{type}
-		url = url + "&geocode=#{geo_str}&%23#{keyword}+filter:#{type}"
-	else
-		url = url + "%23#{keyword}+filter:#{type}"	
-	end
-	
-	#max_id check
-	if max_id != "" then
-		url = url + "&max_id=#{max_id}"
-	end
-	uri = URI.parse(url + "&count=100")
+def searchTimelineByKeyword()
+	url = "https://api.twitter.com/1.1/statuses/user_timeline.json?"
+	# User Id
+	url = url + "user_id=25666128"
+	uri = URI.parse(url + "&count=3200")
 	http = Net::HTTP.new(uri.host, uri.port)
 	http.use_ssl = true
 	#init header
@@ -85,11 +44,46 @@ def searchTimelineByKeyword(keyword, type, geo_str, max_id)
 		'Authorization' => "Bearer " + $access_token
 		})
 	res = http.request(req)
-	#puts res.body
 	if res.code == 409 then
 		#no quota
 		exit 
 	end
-	#puts res.body
-	return JSON.parse(res.body)["statuses"]
+	return JSON.parse(res.body)
 end
+
+def getTimelineByWindow()
+	isFirstReq = true
+	data = ""
+	reqCounter = 0
+	while true do
+	#puts "req left: #{reqCounter}"
+	data = searchTimelineByKeyword()
+	puts "Search is done"
+	processTweets(data)
+	sleep 2
+	end
+end
+
+# Filter out selfie
+def processTweets(tweets)
+	counter = 0
+	for tweet in tweets
+		selfie = false
+		if tweet["entities"].has_key? "hashtags" then
+			for tags in tweet["entities"]["hashtags"]
+				keyword = tags["text"].downcase
+				if keyword.include? "selfie" or keyword.include? "me" or keyword.include? "photooftheday" or keyword.include? "picoftheday" or keyword.include? "happy" or keyword.include? "fun" or keyword.include? "smile" or keyword.include? "summer" or keyword.include? "friends" or keyword.include? "fashion"
+					selfie = true
+				end
+			end
+		end
+		if tweet["entities"].has_key? "media" and selfie == true
+			url = tweet["entities"]["media"][0]["media_url"]
+			$tweets.write(url)
+			$tweets.write("\n")
+		end
+	end
+	exit
+end
+
+getTimelineByWindow()
