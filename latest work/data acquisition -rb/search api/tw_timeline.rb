@@ -62,6 +62,9 @@ def searchTimelineByKeyword()
 			processTweets(JSON.parse(res.body),u_json["user"])
 			puts "#{counter} users finished"
 			counter += 1
+			if counter == 100
+				break
+			end
 		end
 	end
 	users.close
@@ -93,7 +96,7 @@ def processTweets(tweets,user_id)
 				if tweet["entities"].has_key? "hashtags" then
 					for tags in tweet["entities"]["hashtags"]
 						keyword = tags["text"].downcase
-						if keyword.include? "selfie" or keyword.include? "me" or keyword.include? "photooftheday" or keyword.include? "picoftheday" or keyword.include? "happy" or keyword.include? "fun" or keyword.include? "smile" or keyword.include? "summer" or keyword.include? "friends" or keyword.include? "fashion"
+						if keyword.include? "selfie" or keyword.include? "me" or keyword.include? "photooftheday" or keyword.include? "picoftheday" or keyword.include? "happy" or keyword.include? "fun" or keyword.include? "smile" or keyword.include? "summer" or keyword.include? "friends" or keyword.include? "fashion" or keyword.include? "family" or keyword.include? "friendship" or keyword.include? "love" or keyword.include? "vacation"
 							selfie = true
 						end
 					end
