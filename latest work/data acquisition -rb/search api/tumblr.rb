@@ -8,24 +8,13 @@ require "open-uri"
 require "base64"
 
 $stopStamp = "0" # if arg is "", stopId is 0
-## helper method for numeric check
-def is_number? string
-  true if Float(string) rescue false
-end
-
-if ARGV.length != 1 
-	puts "one arg is required"
-	exit
-else
-	arg = ARGV[0]
-	if is_number?(arg) && arg.length == 10 # size of time stamp
-		$stopId = arg
-	elsif arg.eql? ""
-		# ignore
-	else
-		puts "invalid arg"
-		exit
-	end
+## read stop id from text
+File.open("stopId.txt").each do |line|
+		#only read the first line for twitter
+		if line.include? "tumblr"
+			comp = line.split(" ")
+			$stopId = (comp[0].split(":"))[1]
+		end
 end
 
 # tumblr api key
@@ -42,7 +31,7 @@ def recordMaxId(time_stamp)
 	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
 	time = Time.new
 	date = "#{time.day}/#{time.month}/#{time.year}"
-	File.write(f = "stopId.txt", File.read(f).gsub(/tumblr:\d{10}/,"tumblr:#{time_stamp}	#{date}"))
+	File.write(f = "stopId.txt", File.read(f).gsub(/tumblr:\d{10}(.)*/,"tumblr:#{time_stamp}	#{date}"))
 end
 
 ### Search posts from Tumblr
@@ -115,34 +104,29 @@ def searchPostFor(sec, timestamp)
 	isFirstSearch = true
 	sec_step = sec / 0.1 #measure step by seconds
 	while sec_step >= 0 do
-		if isFirstSearch then
-			#no need to add timestamp param
-			posts = searchPostByTag(tag, timestamp)
-			isFirstSearch = false
-		else
-			timeStamp = getMinTimeStamp(posts)
-			if timeStamp > $stopStamp.to_i then
-				posts = searchPostByTag(tag, timeStamp)
+		begin
+			if isFirstSearch then
+				#no need to add timestamp param
+				posts = searchPostByTag(tag, timestamp)
+				isFirstSearch = false
 			else
-				puts "stop id encountered"
-				exit
+				timeStamp = getMinTimeStamp(posts)
+				if timeStamp > $stopStamp.to_i then
+					posts = searchPostByTag(tag, timeStamp)
+				else
+					puts "stop id encountered"
+					exit
+				end
 			end
+			processPosts(posts)
+			sec_step -= 1
+			sleep 0.05
+		rescue
+			next
 		end
-		processPosts(posts)
-		sec_step -= 1
-		sleep 0.05
 	end
 end
 
 puts "working..."
 searchPostFor(100, "")
 puts "done"
-
-# last time stamp. 1380448836 tag: selfie  
-# last time stamp.  		  tag: face 1428372518
-# last time stamp.  		  tag: faces
-
-
-# 4.24 first selfie max id: 1461513474 
-# 4.25 first selfie max id: 1428372518 
-# 4.26 1461698903

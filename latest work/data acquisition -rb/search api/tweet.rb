@@ -27,24 +27,13 @@ require "base64"
 ### specify the low_id as the max_id for request, so no duplicates tweets will be retreieved.
 
 $stopId = "0" # if arg is "", stopId is 0
-## helper method for numeric check
-def is_number? string
-  true if Float(string) rescue false
-end
 
-if ARGV.length != 1 
-	puts "one arg is required"
-	exit
-else
-	arg = ARGV[0]
-	if is_number?(arg) && arg.length == 18 # size of maxId
-		$stopId = arg
-	elsif arg.eql? ""
-		# ignore
-	else
-		puts "invalid arg"
-		exit
-	end
+## read stop id from text
+File.open("stopId.txt").each do |line|
+		#only read the first line for twitter
+		comp = line.split(" ")
+		$stopId = (comp[0].split(":"))[1]
+		break
 end
 
 #Twitter api keys
@@ -84,7 +73,7 @@ def recordMaxId(max_id)
 	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
 	time = Time.new
 	date = "#{time.day}/#{time.month}/#{time.year}"
-	File.write(f = "stopId.txt", File.read(f).gsub(/twitter:\d{18}/,"twitter:#{max_id}	#{date}"))
+	File.write(f = "stopId.txt", File.read(f).gsub(/twitter:\d{18}(.)*/,"twitter:#{max_id}	#{date}"))
 end
 
 ### rate limit: 450 reqs/15mins
@@ -167,27 +156,31 @@ def getTweetsByWindow(window, max_id) #i.e 5 windows = 75 mins
 	data = ""
 	reqCounter = 0
 	while true do
-	#puts "req left: #{reqCounter}"
-	if isFirstReq then
-		# first request, no max_id is specified or user specified
-		data = searchTweetByKeyword(keyword, type, $geo, max_id)
-		isFirstReq = false
-		reqCounter += 1
-	else
-		maxId = getMaxId(data)
-		if maxId.to_i <= $stopId.to_i then
-		 	puts "stop id is encountered"
-			exit
+		#puts "req left: #{reqCounter}"
+		begin
+			if isFirstReq then
+				# first request, no max_id is specified or user specified
+				data = searchTweetByKeyword(keyword, type, $geo, max_id)
+				isFirstReq = false
+				reqCounter += 1
+			else
+				maxId = getMaxId(data)
+				if maxId.to_i <= $stopId.to_i then
+				 	puts "stop id is encountered"
+					exit
+				end
+				data = searchTweetByKeyword(keyword, type, $geo, maxId)
+				reqCounter += 1
+			end
+			processTweets(data)
+			# if reqCounter == 10 * window then
+			# 	#break the loop
+			# 	break
+			# end
+			sleep 2
+		rescue
+			next #move forward
 		end
-		data = searchTweetByKeyword(keyword, type, $geo, maxId)
-		reqCounter += 1
-	end
-	processTweets(data)
-	# if reqCounter == 10 * window then
-	# 	#break the loop
-	# 	break
-	# end
-	sleep 2
 	end
 end
 
@@ -196,10 +189,3 @@ puts "working..."
 getTweetsByWindow(4, "")
 puts "done"
 
-#last max id for tage selfie: 723593669471834112
-# 4.23 first max id 723883477368713217 tag=selfie
-# 4.23				723928574487613441 tag=face
-# 4.24 first max id 724261120362557441  tag = selfie    
-# 4.25 first max id 724633074613383169  tag = selfie 
-# 4.26 725041380586835968 tag = selfie
-# 4.27 725315663447863296
