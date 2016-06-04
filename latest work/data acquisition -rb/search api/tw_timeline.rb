@@ -65,9 +65,9 @@ def searchTimelineByKeyword()
 			puts "#{counter} users finished"
 			counter += 1
 			sleep 2
-			if counter == 500
-				break
-			end
+			# if counter == 500
+			# 	break
+			# end
 		end
 	end
 	users.close
