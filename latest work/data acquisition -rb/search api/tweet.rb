@@ -29,7 +29,7 @@ require "base64"
 $stopId = "0" # if arg is "", stopId is 0
 
 ## read stop id from text
-File.open("stopId.txt").each do |line|
+File.open("/Users/Sonny/Desktop/Panda/latest\ work/data\ acquisition\ -rb/search\ api/stopId.txt").each do |line|
 		#only read the first line for twitter
 		comp = line.split(" ")
 		$stopId = (comp[0].split(":"))[1]
@@ -73,7 +73,7 @@ def recordMaxId(max_id)
 	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
 	time = Time.new
 	date = "#{time.day}/#{time.month}/#{time.year}"
-	File.write(f = "stopId.txt", File.read(f).gsub(/twitter:\d{18}(.)*/,"twitter:#{max_id}	#{date}"))
+	File.write(f = "/Users/Sonny/Desktop/Panda/latest\ work/data\ acquisition\ -rb/search\ api/stopId.txt", File.read(f).gsub(/twitter:\d{18}(.)*/,"twitter:#{max_id}	#{date}"))
 end
 
 ### rate limit: 450 reqs/15mins
