@@ -4,12 +4,16 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Panda' do
-pod 'Parse'
-pod 'NVActivityIndicatorView'
-pod 'JTSImageViewController'
-pod 'JTMaterialSwitch'
-pod 'StepSlider'
-pod 'SVWebViewController'
+    
+    # Database
+    pod 'AVOSCloud'       
+    # UI components
+    pod 'NVActivityIndicatorView'
+    pod 'JTSImageViewController'
+    pod 'JTMaterialSwitch'
+    pod 'StepSlider'
+    pod 'SVWebViewController'
+
 end
 
 target 'PandaTests' do

@@ -1,0 +1,6 @@
+framework module Pods_TrainingDataClusterUITests {
+  umbrella header "Pods-TrainingDataClusterUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

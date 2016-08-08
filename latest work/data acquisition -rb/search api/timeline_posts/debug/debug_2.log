@@ -1,0 +1,8 @@
+# Logfile created on 2016-08-07 23:50:58 -0400 by logger.rb/41954
+I, [2016-08-07T23:50:58.567207 #88244]  INFO -- : loading...
+I, [2016-08-07T23:51:00.031110 #88244]  INFO -- : YML file timeline_2.yml has been loaded
+I, [2016-08-07T23:51:00.045965 #88244]  INFO -- : processing user No. 1
+I, [2016-08-07T23:51:00.046076 #88244]  INFO -- : creating face set with id: 27978407
+I, [2016-08-07T23:51:00.423783 #88244]  INFO -- : faceset has been created
+I, [2016-08-07T23:51:00.423864 #88244]  INFO -- : detecting faces for paths
+I, [2016-08-07T23:51:30.021699 #88244]  INFO -- : sending grouping request

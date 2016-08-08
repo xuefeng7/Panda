@@ -1,30 +1,27 @@
 PODS:
-  - Bolts/Tasks (1.7.0)
+  - AVOSCloud (3.3.5)
   - JTMaterialSwitch (1.1)
   - JTSImageViewController (1.5.1)
-  - NVActivityIndicatorView (2.6)
-  - Parse (1.13.0):
-    - Bolts/Tasks (~> 1.6)
-  - StepSlider (0.1.2)
+  - NVActivityIndicatorView (2.9)
+  - StepSlider (0.1.3)
   - SVWebViewController (1.0)
 
 DEPENDENCIES:
+  - AVOSCloud
   - JTMaterialSwitch
   - JTSImageViewController
   - NVActivityIndicatorView
-  - Parse
   - StepSlider
   - SVWebViewController
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
   JTMaterialSwitch: cad8093c3773ff9f6c60005c98d269eb869b5e04
   JTSImageViewController: 1f8ce1cc93dab0d0af8e53badeea7528560cfec9
-  NVActivityIndicatorView: b8207b369c012af32da0916a8346a56d16a5fbbe
-  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
-  StepSlider: 54466ab1de9002435b6839091f97ff62967fdd7e
+  NVActivityIndicatorView: 0084f6be71bdf4735b5424ebfb530b1e3db3276c
+  StepSlider: bce9de48357f80a5f5d2e45a94ebcb0aeec09729
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
 
-PODFILE CHECKSUM: a5d89261e97ae15d594b695d46da27c90693a942
+PODFILE CHECKSUM: 894dc3bfa3421b6c21b6424bc048a26fc2ca1bb9
 
 COCOAPODS: 1.0.0

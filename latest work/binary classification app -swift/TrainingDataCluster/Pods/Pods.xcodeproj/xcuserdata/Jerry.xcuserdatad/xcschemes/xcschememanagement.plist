@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Bolts.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>JTMaterialSwitch-JTMaterialSwitch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,11 +20,6 @@
 			<false/>
 		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,11 +52,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>35B617F8B0851DCDF666A4909092E791</key>
 		<dict>
 			<key>primary</key>
@@ -77,17 +62,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>626D49AD18621B0A3059EE726B27AE89</key>
+		<key>5C9FD4F8C0FBBF8452DAFD9A3E04E2CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9380B0DE8EC94E8FC78D2A97D1A829B4</key>
+		<key>7D6D5D70A7ED41C75D20F0CBB9A2E839</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B272B33F162D6E5C3510BA50ECF2684B</key>
+		<key>8698C4558AE758AD92477EC134E714F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF7D6453BFA800C65F15559F3923FF03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,17 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC7C13ED4DB63442222BFB4D2244556E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D61C12FFB6540137A29D3EDA45A155CA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DD2BBFD20FE8F0A91CFB620ECD022D14</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,0 +1,9 @@
+# Logfile created on 2016-08-07 23:50:58 -0400 by logger.rb/41954
+I, [2016-08-07T23:50:58.567312 #88243]  INFO -- : loading...
+I, [2016-08-07T23:51:00.311795 #88243]  INFO -- : YML file timeline_1.yml has been loaded
+I, [2016-08-07T23:51:00.317429 #88243]  INFO -- : processing user No. 1
+I, [2016-08-07T23:51:00.317591 #88243]  INFO -- : creating face set with id: 38191574
+I, [2016-08-07T23:51:00.657042 #88243]  INFO -- : faceset has been created
+I, [2016-08-07T23:51:00.657150 #88243]  INFO -- : detecting faces for paths
+I, [2016-08-07T23:51:06.640363 #88243]  INFO -- : one session has been closed
+I, [2016-08-07T23:51:06.640547 #88243]  INFO -- : trivial error: move to the next user

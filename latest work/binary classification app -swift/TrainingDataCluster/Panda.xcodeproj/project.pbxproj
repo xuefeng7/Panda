@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		30BE435F59D18DF9DA4EFEE8 /* Pods_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */; };
 		ABBCBFD0EB9D1FEB1245F5C9 /* Pods_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */; };
+		C45BCAAB1D4B9B7B0030045B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45BCAAA1D4B9B7B0030045B /* Constant.swift */; };
+		C48316E51D4BFEE0005480AD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316E41D4BFEE0005480AD /* SignInViewController.swift */; };
+		C48316E71D4BFEF4005480AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316E61D4BFEF4005480AD /* SignUpViewController.swift */; };
+		C48316E91D4BFF05005480AD /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316E81D4BFF05005480AD /* ForgotPasswordViewController.swift */; };
+		C48316EB1D4C0982005480AD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316EA1D4C0982005480AD /* Utils.swift */; };
+		C48966031D53C9BA00442BD4 /* MainRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */; };
+		C48966051D53CB5600442BD4 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48966041D53CB5600442BD4 /* RatingCell.swift */; };
+		C4D9327B1D501D780007F6DF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D9327A1D501D780007F6DF /* WelcomeViewController.swift */; };
 		C4E1C6611CB08A0600518B37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6601CB08A0600518B37 /* AppDelegate.swift */; };
 		C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6621CB08A0600518B37 /* ViewController.swift */; };
 		C4E1C6661CB08A0600518B37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E1C6641CB08A0600518B37 /* Main.storyboard */; };
@@ -45,7 +53,21 @@
 		6307850C851211F8E27AA4EB /* Pods-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
 		8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF5DB060687566E56B3E97F /* Pods_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4AD102D1CB0BD3600D98135 /* TrainingDataCluster-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrainingDataCluster-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		C45BCA9E1D4B984D0030045B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C45BCAA01D4B98530030045B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C45BCAA21D4B98570030045B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		C45BCAA41D4B985C0030045B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C45BCAA61D4B98660030045B /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		C45BCAA81D4B9A240030045B /* LeanCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LeanCloud.framework; path = "Pods/../build/Debug-iphoneos/LeanCloud/LeanCloud.framework"; sourceTree = "<group>"; };
+		C45BCAAA1D4B9B7B0030045B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C48316E41D4BFEE0005480AD /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
+		C48316E61D4BFEF4005480AD /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		C48316E81D4BFF05005480AD /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		C48316EA1D4C0982005480AD /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRatingViewController.swift; sourceTree = "<group>"; };
+		C48966041D53CB5600442BD4 /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		C4AD102D1CB0BD3600D98135 /* Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Panda-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		C4D9327A1D501D780007F6DF /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C4E1C65D1CB08A0600518B37 /* Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E1C6601CB08A0600518B37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E1C6621CB08A0600518B37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,12 +125,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C4D9327C1D501D7D0007F6DF /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				C4D9327A1D501D780007F6DF /* WelcomeViewController.swift */,
+				C48316E41D4BFEE0005480AD /* SignInViewController.swift */,
+				C48316E61D4BFEF4005480AD /* SignUpViewController.swift */,
+				C48316E81D4BFF05005480AD /* ForgotPasswordViewController.swift */,
+			);
+			name = Registration;
+			sourceTree = "<group>";
+		};
+		C4D9327D1D501D990007F6DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C45BCAAA1D4B9B7B0030045B /* Constant.swift */,
+				C48316EA1D4C0982005480AD /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		C4E1C6541CB08A0600518B37 = {
 			isa = PBXGroup;
 			children = (
-				C4E1C65F1CB08A0600518B37 /* TrainingDataCluster */,
-				C4E1C6741CB08A0600518B37 /* TrainingDataClusterTests */,
-				C4E1C67F1CB08A0600518B37 /* TrainingDataClusterUITests */,
+				C4E1C65F1CB08A0600518B37 /* Panda */,
+				C4E1C6741CB08A0600518B37 /* PandaTests */,
+				C4E1C67F1CB08A0600518B37 /* PandaUITests */,
 				C4E1C65E1CB08A0600518B37 /* Products */,
 				1A7DBB02D9D45BFD12FD5263 /* Pods */,
 				FBB9384AFB33A55745F6216A /* Frameworks */,
@@ -125,41 +167,54 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C4E1C65F1CB08A0600518B37 /* TrainingDataCluster */ = {
+		C4E1C65F1CB08A0600518B37 /* Panda */ = {
 			isa = PBXGroup;
 			children = (
-				C4AD102D1CB0BD3600D98135 /* TrainingDataCluster-Bridging-Header.h */,
+				C4D9327C1D501D7D0007F6DF /* Registration */,
 				C4E1C6601CB08A0600518B37 /* AppDelegate.swift */,
-				C4E1C6621CB08A0600518B37 /* ViewController.swift */,
 				C4E1C6641CB08A0600518B37 /* Main.storyboard */,
-				C4E1C6671CB08A0600518B37 /* Assets.xcassets */,
 				C4E1C6691CB08A0600518B37 /* LaunchScreen.storyboard */,
+				C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */,
+				C48966041D53CB5600442BD4 /* RatingCell.swift */,
+				C4E1C6621CB08A0600518B37 /* ViewController.swift */,
+				C4D9327D1D501D990007F6DF /* Utils */,
+				C4E1C6671CB08A0600518B37 /* Assets.xcassets */,
+				C4AD102D1CB0BD3600D98135 /* Panda-Bridging-Header.h */,
 				C4E1C66C1CB08A0600518B37 /* Info.plist */,
 			);
+			name = Panda;
 			path = TrainingDataCluster;
 			sourceTree = "<group>";
 		};
-		C4E1C6741CB08A0600518B37 /* TrainingDataClusterTests */ = {
+		C4E1C6741CB08A0600518B37 /* PandaTests */ = {
 			isa = PBXGroup;
 			children = (
 				C4E1C6751CB08A0600518B37 /* TrainingDataClusterTests.swift */,
 				C4E1C6771CB08A0600518B37 /* Info.plist */,
 			);
+			name = PandaTests;
 			path = TrainingDataClusterTests;
 			sourceTree = "<group>";
 		};
-		C4E1C67F1CB08A0600518B37 /* TrainingDataClusterUITests */ = {
+		C4E1C67F1CB08A0600518B37 /* PandaUITests */ = {
 			isa = PBXGroup;
 			children = (
 				C4E1C6801CB08A0600518B37 /* TrainingDataClusterUITests.swift */,
 				C4E1C6821CB08A0600518B37 /* Info.plist */,
 			);
+			name = PandaUITests;
 			path = TrainingDataClusterUITests;
 			sourceTree = "<group>";
 		};
 		FBB9384AFB33A55745F6216A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C45BCAA81D4B9A240030045B /* LeanCloud.framework */,
+				C45BCAA61D4B98660030045B /* libicucore.tbd */,
+				C45BCAA41D4B985C0030045B /* CoreLocation.framework */,
+				C45BCAA21D4B98570030045B /* CoreTelephony.framework */,
+				C45BCAA01D4B98530030045B /* MobileCoreServices.framework */,
+				C45BCA9E1D4B984D0030045B /* SystemConfiguration.framework */,
 				9BF5DB060687566E56B3E97F /* Pods_Panda.framework */,
 				8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */,
 				187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */,
@@ -244,6 +299,7 @@
 					C4E1C65C1CB08A0600518B37 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 54CZF8CF37;
+						ProvisioningStyle = Automatic;
 					};
 					C4E1C6701CB08A0600518B37 = {
 						CreatedOnToolsVersion = 7.3;
@@ -430,8 +486,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48316E51D4BFEE0005480AD /* SignInViewController.swift in Sources */,
+				C4D9327B1D501D780007F6DF /* WelcomeViewController.swift in Sources */,
 				C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */,
+				C48316E91D4BFF05005480AD /* ForgotPasswordViewController.swift in Sources */,
+				C48966051D53CB5600442BD4 /* RatingCell.swift in Sources */,
+				C48316EB1D4C0982005480AD /* Utils.swift in Sources */,
 				C4E1C6611CB08A0600518B37 /* AppDelegate.swift in Sources */,
+				C45BCAAB1D4B9B7B0030045B /* Constant.swift in Sources */,
+				C48966031D53C9BA00442BD4 /* MainRatingViewController.swift in Sources */,
+				C48316E71D4BFEF4005480AD /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +591,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -567,7 +631,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -585,6 +649,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LeanCloud",
 				);
 				INFOPLIST_FILE = TrainingDataCluster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -592,9 +657,10 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataCluster;
 				PRODUCT_NAME = Panda;
-				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
-				SWIFT_OBJC_BRIDGING_HEADER = "TrainingDataCluster-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -610,6 +676,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/LeanCloud",
 				);
 				INFOPLIST_FILE = TrainingDataCluster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -617,8 +684,9 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = XFOffice.TrainingDataCluster;
 				PRODUCT_NAME = Panda;
-				PROVISIONING_PROFILE = "66bf4e3f-ca94-46b0-80ee-235ac1d43c12";
-				SWIFT_OBJC_BRIDGING_HEADER = "TrainingDataCluster-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Panda-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

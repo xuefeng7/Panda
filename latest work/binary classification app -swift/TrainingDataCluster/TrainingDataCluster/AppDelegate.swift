@@ -7,19 +7,62 @@
 //
 
 import UIKit
-import Parse
-import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // Initialize Parse.
-        Parse.setApplicationId("yIXHt9rTdw2TZ5ozblwc1dpJwqnIGOhUwwZ39GoV",
-                               clientKey: "QOG9wERMuBFnZNn2B5bZPKbI4g5bXm7uaqC5swQl")
+        // Connect to server (US)
+        AVOSCloud.setServiceRegion(.US)
+        AVOSCloud.setApplicationId(Constant.AVServer.appId, clientKey: Constant.AVServer.appKey)
+        
+        // Analytics
+        AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        // Config local assessed observations count
+        if NSUserDefaults.standardUserDefaults().objectForKey("assessed") == nil  {
+            // haven't initialized yet, initiate
+            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "assessed")
+        }
+        
+        // Authentication
+        let user = AVUser.currentUser()
+        if user != nil {
+            
+            // refresh the user
+            user.fetch()
+        
+            // have initialized.
+            // compare with remote one
+            let localAssessed = NSUserDefaults.standardUserDefaults().objectForKey("assessed") as! Int
+            if localAssessed > user.objectForKey("assessed") as! Int {
+                // update the remote one
+                user.setObject(localAssessed, forKey: "assessed")
+                user.save()
+            }else if localAssessed < user.objectForKey("assessed") as! Int {
+                // this case happens if user delete the app
+                 let remoteAssessed = user.objectForKey("assessed") as! Int
+                 NSUserDefaults.standardUserDefaults().setInteger(remoteAssessed, forKey: "assessed")
+            }
+
+            // Main view
+            let mainNav = storyboard.instantiateViewControllerWithIdentifier("mainNav") as! UINavigationController
+            self.window?.rootViewController = mainNav
+            self.window?.makeKeyAndVisible()
+            
+        }else{
+            // Sign in/ Sign up
+            let registerNav = storyboard.instantiateViewControllerWithIdentifier("registerNav") as! UINavigationController
+            self.window?.rootViewController = registerNav
+            self.window?.makeKeyAndVisible()
+        }
+        
+        // make all textfield has radius degree
+        UITextField.appearance().layer.cornerRadius = 10.0
         
         return true
     }
@@ -45,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 import NVActivityIndicatorView
 import JTSImageViewController
 import StepSlider
@@ -16,9 +15,11 @@ import SVWebViewController
 
 class ViewController: UIViewController {
     
-    var data = Array<PFObject>()
+    var data = Array<AVObject>()
+    var ratings = NSMutableArray()
+    
     //assessed observation count
-    var observationCount: Int = 0
+    var assessedObservation: Int = 0
     //image UI
     var mainImageView: UIImageView = UIImageView()
     var mainLabel: UILabel = UILabel()
@@ -35,23 +36,99 @@ class ViewController: UIViewController {
     var loadingIndicator: NVActivityIndicatorView!
     var refreshBtn: UIButton!
     
-    @IBAction func openInfo(sender: AnyObject) {
-        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-xvnufxdmg3zx/K7ORiRbC3IScCDUotgBy7WnvIYkxI7WzkiaApCcf.html")
-        self.presentViewController(webViewer, animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        //Check the assessed observation counter
-        if NSUserDefaults.standardUserDefaults().objectForKey("observations") == nil {
-            //if not setup before
-            NSUserDefaults.standardUserDefaults().setInteger(0, forKey: "observations")
-        }else{
-            observationCount = NSUserDefaults.standardUserDefaults().objectForKey("observations") as! Int
-        }
+        assessedObservation = NSUserDefaults.standardUserDefaults().objectForKey("assessed") as! Int
         
+        // UI setup
+        UIComponents()
+        
+        // Load source
+        loadData()
+        
+        // bar buttons
+        let openInfoButton = UIButton(type: .InfoLight)
+        openInfoButton.addTarget(self, action: #selector(ViewController.openInfo), forControlEvents: .TouchUpInside)
+        let infoBarButton = UIBarButtonItem(customView: openInfoButton)
+        
+        let signOutBarButton = UIBarButtonItem(title: "Log out", style: .Done, target: self, action: #selector(ViewController.SignOut))
+        
+        self.navigationItem.setLeftBarButtonItem(infoBarButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(signOutBarButton, animated: true)
+    }
+    
+    /// download source data from cloud
+    func loadData() {
+        
+        loadingIndicator.startAnimation()
+        let query = AVQuery(className:"Face")
+        query.whereKey("name", containsString: "_fa") //only show majors
+        query.orderByAscending("name")
+        query.limit = 100
+        //read the assessed observation count
+        //and set it as skip in query
+        query.skip = AVUser.currentUser().objectForKey("assessed") as! Int
+      
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil {
+                if let objects = objects {
+                    //the assessment is done
+                    if objects.count == 0 {
+                        Utils.showMsg("Thank you", msg: "You have finished the survey, thanks sincerely for your paticipation", vc: self)
+                    }else{
+                        
+                        for object in objects {
+                            self.data.append(object as! AVObject)
+                        }
+                        self.displayImage()
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                Utils.showMsg("Alert", msg: "load data failed with error: \(error)", vc: self)
+            }
+        }
+    }
+    
+    func displayImage() {
+        if data.count == 0 {
+            //load more
+            loadData()
+        }else{
+            if let picFile = data[0]["picture"] {
+                self.loadingIndicator.startAnimation()
+            (picFile as! AVFile).getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) -> Void in
+                self.loadingIndicator.stopAnimation()
+                if error == nil {
+                    if let imageData = imageData {
+                        self.refreshBtn.alpha = 0
+                        UIView.animateWithDuration(0.2, animations: { 
+                            self.mainImageView.image = UIImage(data: imageData)
+                        })
+                        if let name = self.data[0]["name"] {
+                            self.mainLabel.text = name as! String
+                        }else{
+                            self.mainLabel.text = "unknown"
+                        }
+                        //enable the move to next button
+                        self.nextBtn.userInteractionEnabled = true
+                    }
+                }else{
+                    Utils.showMsg("Alert", msg: "load image failed with error: \(error)", vc: self)
+                    self.refreshBtn.alpha = 1
+                }
+            }
+            }
+        }
+    }
+    
+    /// UI elements setup
+    func UIComponents() {
         mainImageView.frame = CGRectMake(0, 60, self.view.frame.width, (1/2)*self.view.frame.height)
         mainImageView.contentMode = .ScaleToFill
         self.view.addSubview(mainImageView)
@@ -78,8 +155,6 @@ class ViewController: UIViewController {
         mainLabel.font = UIFont.systemFontOfSize(14)
         self.view.addSubview(mainLabel)
         
-        loadData()
-        
         //label of sleepiness level
         let levelLabel =  UILabel(frame: CGRectMake(20, 40 + mainLabel.frame.origin.y + mainLabel.frame.height + 10, 80,20))
         levelLabel.textColor = UIColor.darkGrayColor()
@@ -87,7 +162,7 @@ class ViewController: UIViewController {
         levelLabel.text = "sleepiness"
         //step slider
         slider = StepSlider(frame: CGRectMake(100, 40 + mainLabel.frame.origin.y + mainLabel.frame.height + 10, self.view.frame.width - 110 - 50, 20))
-        slider.maxCount = 6
+        slider.maxCount = 4
         slider.sliderCircleColor = UIColor(red: 52/255.0, green: 109/255.0, blue: 241/255.0, alpha: 1)
         slider.setIndex(0, animated: true)
         slider.tintColor = UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1)
@@ -132,72 +207,7 @@ class ViewController: UIViewController {
         nextBtn.titleLabel?.textColor = UIColor.whiteColor()
         nextBtn.addTarget(self, action: #selector(ViewController.saveThenMoveToNext), forControlEvents: .TouchUpInside)
         self.view.addSubview(nextBtn)
-         
-    }
-    /// download source data from cloud
-    func loadData() {
-        loadingIndicator.startAnimation()
-        let query = PFQuery(className:"Faces")
-        query.whereKey("tag", notEqualTo: "newn");
-        query.orderByAscending("name")
-        //query.limit = 100
-        //read the assessed observation count
-        //and set it as skip in query
-        query.skip = NSUserDefaults.standardUserDefaults().objectForKey("observations") as! NSInteger
-        query.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                if let objects = objects {
-                    //the assessment is done
-                    if objects.count == 0 {
-                        self.showMsg("Thank you", msg: "You have finished the survey, thanks sincerely for your paticipation")
-                    }else{
-                        for object in objects {
-                            //print(object)
-                            self.data.append(object)
-                        }
-                        self.displayImage()
-                    }
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                self.showMsg("Alert", msg: "load data failed with error: \(error)")
-            }
-        }
-    }
-    
-    func displayImage() {
-        if data.count == 0 {
-            //load more
-            loadData()
-        }else{
-            if let picFile = data[0]["picture"] {
-                self.loadingIndicator.startAnimation()
-            (picFile as! PFFile).getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
-                self.loadingIndicator.stopAnimation()
-                if error == nil {
-                    if let imageData = imageData {
-                        self.refreshBtn.alpha = 0
-                        UIView.animateWithDuration(0.2, animations: { 
-                            self.mainImageView.image = UIImage(data: imageData)
-                        })
-                        if let name = self.data[0]["name"] {
-                            self.mainLabel.text = name as! String
-                        }else{
-                            self.mainLabel.text = "unknown"
-                        }
-                        //enable the move to next button
-                        self.nextBtn.userInteractionEnabled = true
-                    }
-                }else{
-                    self.showMsg("Alert", msg: "load image failed with error: \(error)")
-                    self.refreshBtn.alpha = 1
-                }
-            }
-            }
-        }
+
     }
     
     /// tap to view the enlarged image
@@ -216,33 +226,6 @@ class ViewController: UIViewController {
         self.numLabel.text = "level \(slider.index)"
     }
 
-//    func clickToPos() {
-//        if data.count > 0 {
-//            let currentObj = data.first!
-//            currentObj.setObject("pos", forKey: "class")
-//            currentObj.saveInBackground()
-//            data.removeFirst()
-//            displayImage()
-//        }
-//    }
-//    
-//    func clickToNeg() {
-//        if data.count > 0 {
-//            let currentObj = data.first!
-//            currentObj.setObject("neg", forKey: "class")
-//            currentObj.saveInBackground()
-//            data.removeFirst()
-//            displayImage()
-//        }
-//    }
-
-    /// show alert view
-    func showMsg(title: String, msg: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     ///next button action listener
     func saveThenMoveToNext() {
         //change button title
@@ -252,16 +235,26 @@ class ViewController: UIViewController {
         nextBtn.userInteractionEnabled = false
         if data.count > 0 {
             let currentObj = data.first!
-            currentObj.addObject(pohSwitcher.isOn, forKey: "POH")
-            currentObj.addObject(ppSwitcher.isOn, forKey: "PP")
-            currentObj.addObject(slider.index, forKey: "SLEVEL")
+            // periorbital hyperpigmentation
+            let username = AVUser.currentUser().username
+            currentObj.addObject("\(pohSwitcher.isOn)(\(username))", forKey: "PH")
+            // periorbital puffiness
+            currentObj.addObject("\(ppSwitcher.isOn)(\(username))", forKey: "PP")
+            // fatigue level
+            currentObj.addObject("\(slider.index)(\(username))", forKey: "FL")
             currentObj.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
+                    
                     // The object has been saved.
-                    //increment the observation counter
-                    self.observationCount += 1
-                    NSUserDefaults.standardUserDefaults().setInteger(self.observationCount, forKey: "observations")
+                    // increment the assessed number for user
+                    // local
+                    self.assessedObservation += 1
+                    NSUserDefaults.standardUserDefaults().setInteger(self.assessedObservation, forKey: "assessed")
+                    // remote
+                    AVUser.currentUser().incrementKey("assessed")
+                    AVUser.currentUser().saveEventually()
+                    
                     //move to the next
                     self.data.removeFirst()
                     self.displayImage()
@@ -273,12 +266,28 @@ class ViewController: UIViewController {
                     self.ppSwitcher.setOn(false, animated: false)
                 } else {
                     // There was a problem, check error.description
-                    self.showMsg("Save Failed", msg: "\(error?.description)")
+                    Utils.showMsg("Save Failed", msg: "\(error?.description)", vc: self)
                 }
             }
         }else {
-            showMsg("Warning", msg: "Data set is empty")
+            Utils.showMsg("Warning", msg: "Data set is empty", vc: self)
         }
+    }
+    
+    func openInfo() {
+        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-xvnufxdmg3zx/K7ORiRbC3IScCDUotgBy7WnvIYkxI7WzkiaApCcf.html")
+        self.presentViewController(webViewer, animated: true, completion: nil)
+    }
+    
+    func SignOut() {
+        AVUser.logOut()
+        AVFile.clearAllCachedFiles()
+        let registerNav = self.storyboard?.instantiateViewControllerWithIdentifier("registerNav") as! UINavigationController
+        self.presentViewController(registerNav, animated: true, completion: nil)
+    }
+    
+    /// steper delegate
+    func sliderValueChanged() {
     }
     
     override func didReceiveMemoryWarning() {

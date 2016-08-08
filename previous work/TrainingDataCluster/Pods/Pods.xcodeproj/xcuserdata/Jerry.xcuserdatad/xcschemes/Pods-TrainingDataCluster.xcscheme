@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F49DBD2C4595A056DE346802'
+               BlueprintIdentifier = '6E66F9BE82FD344A9FA229D6F426FFD2'
                BlueprintName = 'Pods-TrainingDataCluster'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods_TrainingDataCluster.framework'>
+               BuildableName = 'Pods-TrainingDataCluster.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
