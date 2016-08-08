@@ -32,7 +32,7 @@ $access_token = JSON.parse(res.body)['access_token']
 #txt file that stores all resulting image url
 
 
-$tweets = File.open("timeline.txt", 'a+')
+
 $user_dic = YAML.load_file('user_dic.yml')
 # Initialization
 if $user_dic.class == FalseClass
@@ -65,7 +65,7 @@ def searchTimelineByKeyword()
 			puts "#{counter} users finished"
 			counter += 1
 			sleep 2
-			if counter == 500
+			if counter == 2000
 				break
 			end
 		end

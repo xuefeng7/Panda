@@ -9,7 +9,7 @@ require "base64"
 
 $stopStamp = "0" # if arg is "", stopId is 0
 ## read stop id from text
-File.open("stopId.txt").each do |line|
+File.open("/Users/Sonny/Desktop/Panda/latest\ work/data\ acquisition\ -rb/search\ api/stopId.txt").each do |line|
 		#only read the first line for twitter
 		if line.include? "tumblr"
 			comp = line.split(" ")
@@ -31,7 +31,7 @@ def recordMaxId(time_stamp)
 	#$stopIdFile.each_line { |line| $stopIdFile.replace_puts('blah') if line =~ /twitter:/}
 	time = Time.new
 	date = "#{time.day}/#{time.month}/#{time.year}"
-	File.write(f = "stopId.txt", File.read(f).gsub(/tumblr:\d{10}(.)*/,"tumblr:#{time_stamp}	#{date}"))
+	File.write(f = "/Users/Sonny/Desktop/Panda/latest\ work/data\ acquisition\ -rb/search\ api/stopId.txt", File.read(f).gsub(/tumblr:\d{10}(.)*/,"tumblr:#{time_stamp}	#{date}"))
 end
 
 ### Search posts from Tumblr
