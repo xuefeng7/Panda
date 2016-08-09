@@ -14,13 +14,15 @@ require 'logger'
 
 #/// File indexer
 $fileIndex = 0
+#/// Line skip
+$skipLine = 0
 #/// Sever Auth
 $api_key = ""
 $api_secret = ""
 
 #/// Read args from command line
-if ARGV.size != 3 then
-	raise "three args are required"
+if ARGV.size != 4 then
+	raise "four args are required"
 elsif ARGV[0] =~ /\A\d+\z/ ? false: true then
 	raise "arg should ba an integer from 1 to 10"
 elsif  ARGV[0].to_i > 10 ||  ARGV[0].to_i < 0 then
@@ -29,6 +31,7 @@ else
 	$fileIndex = ARGV[0]
 	$api_key = ARGV[1]
 	$api_secret =  ARGV[2]
+	$skipLine = ARGV[3]
 end
 
 #/// DEBUG
@@ -51,7 +54,7 @@ $faceAttrArray = Hash.new
 $faceSetCurrentSize = 0
 
 $faceSetMaxSize = 5
-$faceSetSessions = []
+$faceSetSessions = Hash.new 
 
 $result_1 = File.open("Faces/result_#{$fileIndex}.txt", "a+")
 $error_1 =  File.open("Error/error_#{$fileIndex}.txt", "a+")
@@ -81,13 +84,18 @@ def deleteFaceSet(id)
 end
 
 ## run loop to force deleteface succeed 
-def forceTodeleteFaceSet(id, session) # session is optional
+def forceToDeleteFaceSet(id, session) # session is optional
+	
+	if id == "" then
+		id = $faceSetSessions.key(session)
+	end
+
 	while true 
 		if deleteFaceSet(id) ## when true, jump out of the while loop
 			$faceSetCurrentSize -= 1
 			# clear the session from the session array
 			if session != "" then
-				$faceSetSessions.delete(session)
+				$faceSetSessions.delete(id)
 			end
 			$log.info "one session has been closed"
 			break
@@ -105,6 +113,7 @@ def detectFace(path)
 
 	# temporarily record each facial attributions
 	for face in faces
+		puts "#{face['face_id']}: local-#{path} ** face++-#{dtResp['url']}"
 		$faceAttrArray[face["face_id"]] = [face["attribute"], path]
 	end
 
@@ -159,7 +168,7 @@ def parseGroupingResult(res, userId)
 	 	photos = []
 	 	for face in group # each face from the same person
 	 		srcUrl = $faceAttrArray[face["face_id"]][1]
-	 		landmark = faciaLandMark[face["face_id"]]
+	 		landmark = faciaLandMark(face["face_id"])
 	 		photos << [srcUrl, landmark]
 	 	end
 	 	 timeLineFaces << [attributes, photos]
@@ -183,18 +192,19 @@ end
 ## Check sessions
 def sessionCheck()
 	# check if results are available
-	for session in faceSetSessions
-		
+	for key in $faceSetSessions.keys
+		session = $faceSetSessions[key]
 		sessionUrl = $sessionPrefix + "session_id=#{session}"
 		sessionRespBody =  createAndSendHttpReq(sessionUrl, 1)
 		
 		if sessionRespBody['status'] == 'SUCC' then
-			$log.info "session status for #{userId} became to SUCC "
+			$log.info "one session status has became to SUCC "
 			# process the returned groupping result
-			parseGroupingResult(sessionRespBody["result"], sessionRespBody["result"]["faceset_name"])
+			puts sessionRespBody["result"]
+			parseGroupingResult(sessionRespBody["result"], key)
 			# remove faceset, make sure no error happens
 			# if error occurs, re-send the request until the set is deleted
-			forceTodeleteFaceSet(sessionRespBody["result"]["faceset_name"], session)
+			forceToDeleteFaceSet("", session)
 		end
 	end
 end
@@ -229,14 +239,14 @@ def processTimeLine(userId, paths)
 	## no faces has been detected from all paths
 	if faceCount == 0 then
 		# delete created faceset
-		forceTodeleteFaceSet(userId, "")
+		forceToDeleteFaceSet(userId, "")
 		# skip to next user
 		raise 'trivial error' # will be catched, and move to next user
 	elsif faceCount == 1 then
 		# write face info to file
 		# only one face in faceAttrArray
 		parseFace(userId)
-		forceTodeleteFaceSet(userId, "")
+		forceToDeleteFaceSet(userId, "")
 		raise 'trivial error'
 		# move to next user
 	end
@@ -244,7 +254,7 @@ def processTimeLine(userId, paths)
 	## - the groupping result will not be available synchronously, shall later query with session_id
 	$log.info "sending grouping request"
 	session_id = grouping(userId)
-	$faceSetSessions << session_id
+	$faceSetSessions[userId] = session_id
 	## max faceset number has been reached
 	## run loop wait to remove faceset
 	
@@ -301,6 +311,9 @@ $log.info "YML file #{name} has been loaded"
 count = 0
 for user in src.keys
 	count += 1
+	if count <= $skipLine.to_i then
+		next
+	end 
 	$log.info "processing user No. #{count}"
 	paths = src[user]
 	begin
@@ -313,13 +326,21 @@ for user in src.keys
 			# skip
 			$log.info "trivial error: move to the next user"
 		end
-		exit
-		next
+		if count == 10 then
+			break
+		end
+		#exit
+		#next
 	end
-	exit
+	#exit
+	if count == 10 then
+			break
+	end
 end
 ## when program ends, 
 ## check if there is any session has not been closed
 at_exit do
-	sessionCheck()
+	while $faceSetSessions.size > 0
+		sessionCheck()
+	end
 end
