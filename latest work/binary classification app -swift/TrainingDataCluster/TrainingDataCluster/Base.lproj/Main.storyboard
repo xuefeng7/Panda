@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="16A254g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5V-IR-irw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11173.2" systemVersion="16A304a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5V-IR-irw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11143.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -43,13 +43,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bdN-9I-rNc">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="M5M-0r-5lS"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ho7-U5-euZ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="245" id="yM8-EF-w1w"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RatingCell" textLabel="YN7-kR-9cw" detailTextLabel="MTb-vf-J5u" style="IBUITableViewCellStyleValue1" id="hOk-UL-YdE" customClass="RatingCell" customModule="Panda" customModuleProvider="target">
                                         <frame key="frameInset" minY="28" width="361" height="44"/>
@@ -77,9 +75,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tCH-y8-eZz">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BAc-hU-n7w">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Umq-C7-UaP" customClass="ImageCollectionViewCell" customModule="Panda" customModuleProvider="target">
+                                        <frame key="frameInset" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="33i-Bv-qZI"/>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="33i-Bv-qZI" secondAttribute="bottom" id="2V1-D3-ctQ"/>
+                                            <constraint firstItem="33i-Bv-qZI" firstAttribute="top" secondItem="Umq-C7-UaP" secondAttribute="top" id="7sw-hN-LL8"/>
+                                            <constraint firstAttribute="trailing" secondItem="33i-Bv-qZI" secondAttribute="trailing" id="b1x-HD-HBk"/>
+                                            <constraint firstItem="33i-Bv-qZI" firstAttribute="leading" secondItem="Umq-C7-UaP" secondAttribute="leading" id="pLP-Rq-dDZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="ImageBox" destination="33i-Bv-qZI" id="wqs-I0-fbL"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-bm-mt9">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="J4C-Bf-5DQ"/>
+                                    <constraint firstAttribute="height" constant="21" id="oJW-AZ-dTy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
@@ -88,22 +116,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bdN-9I-rNc" firstAttribute="leading" secondItem="2tr-bm-mt9" secondAttribute="leading" id="2JW-uo-m0D"/>
-                            <constraint firstItem="OcE-OG-1tD" firstAttribute="top" secondItem="Ho7-U5-euZ" secondAttribute="bottom" constant="31" id="2OW-EK-F4F"/>
-                            <constraint firstItem="bdN-9I-rNc" firstAttribute="top" secondItem="AOK-W5-aN8" secondAttribute="bottom" constant="16" id="QlG-yk-4iX"/>
-                            <constraint firstItem="2tr-bm-mt9" firstAttribute="trailing" secondItem="3kO-nw-AB0" secondAttribute="trailingMargin" id="Rfu-ci-Zeh"/>
-                            <constraint firstItem="bdN-9I-rNc" firstAttribute="centerX" secondItem="3kO-nw-AB0" secondAttribute="centerX" id="ez2-Yk-yPI"/>
-                            <constraint firstItem="2tr-bm-mt9" firstAttribute="top" secondItem="bdN-9I-rNc" secondAttribute="bottom" constant="8" symbolic="YES" id="rdH-UN-wVx"/>
-                            <constraint firstItem="2tr-bm-mt9" firstAttribute="leading" secondItem="Ho7-U5-euZ" secondAttribute="leading" id="sXE-Bw-JQZ"/>
-                            <constraint firstItem="bdN-9I-rNc" firstAttribute="leading" secondItem="3kO-nw-AB0" secondAttribute="leadingMargin" constant="-9" id="tRO-LZ-MIO"/>
-                            <constraint firstItem="bdN-9I-rNc" firstAttribute="trailing" secondItem="Ho7-U5-euZ" secondAttribute="trailing" id="vLk-Og-s9V"/>
-                            <constraint firstItem="Ho7-U5-euZ" firstAttribute="top" secondItem="2tr-bm-mt9" secondAttribute="bottom" constant="7" id="xLX-TM-pWS"/>
+                            <constraint firstItem="2tr-bm-mt9" firstAttribute="top" secondItem="tCH-y8-eZz" secondAttribute="bottom" constant="8" symbolic="YES" id="1it-re-ASl"/>
+                            <constraint firstItem="2tr-bm-mt9" firstAttribute="centerX" secondItem="Ho7-U5-euZ" secondAttribute="centerX" id="6Gs-Yn-HVt"/>
+                            <constraint firstItem="tCH-y8-eZz" firstAttribute="trailing" secondItem="3kO-nw-AB0" secondAttribute="trailingMargin" id="8ph-ZB-Qfb"/>
+                            <constraint firstItem="OcE-OG-1tD" firstAttribute="top" secondItem="Ho7-U5-euZ" secondAttribute="bottom" constant="31" id="DMK-np-Jcf"/>
+                            <constraint firstItem="2tr-bm-mt9" firstAttribute="leading" secondItem="3kO-nw-AB0" secondAttribute="leadingMargin" constant="-5" id="Ez1-Kj-keG"/>
+                            <constraint firstItem="tCH-y8-eZz" firstAttribute="centerX" secondItem="2tr-bm-mt9" secondAttribute="centerX" id="H1S-RV-j0H"/>
+                            <constraint firstItem="tCH-y8-eZz" firstAttribute="leading" secondItem="3kO-nw-AB0" secondAttribute="leadingMargin" id="KuH-j9-9aB"/>
+                            <constraint firstItem="Ho7-U5-euZ" firstAttribute="top" secondItem="2tr-bm-mt9" secondAttribute="bottom" constant="8" symbolic="YES" id="nOO-k7-CSY"/>
+                            <constraint firstItem="tCH-y8-eZz" firstAttribute="top" secondItem="AOK-W5-aN8" secondAttribute="bottom" constant="8" symbolic="YES" id="nbr-pb-MZy"/>
+                            <constraint firstItem="Ho7-U5-euZ" firstAttribute="leading" secondItem="3kO-nw-AB0" secondAttribute="leadingMargin" constant="-9" id="oxz-1u-HJ1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Panda" id="dxP-F8-O4m"/>
                     <connections>
                         <outlet property="evaluateTable" destination="Ho7-U5-euZ" id="Vfo-W5-BJd"/>
-                        <outlet property="mainImageView" destination="bdN-9I-rNc" id="boZ-3g-0vh"/>
+                        <outlet property="mainImageView" destination="tCH-y8-eZz" id="MqL-Oy-ikE"/>
                         <outlet property="photoNameLabel" destination="2tr-bm-mt9" id="H1u-i2-Gz8"/>
                     </connections>
                 </viewController>
@@ -424,7 +452,6 @@
     </scenes>
     <resources>
         <image name="logo" width="90" height="90"/>
-        <image name="placeholder" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Myu-E8-GNP"/>

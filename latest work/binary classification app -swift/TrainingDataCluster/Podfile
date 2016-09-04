@@ -13,7 +13,9 @@ target 'Panda' do
     pod 'JTMaterialSwitch'
     pod 'StepSlider'
     pod 'SVWebViewController'
-
+    
+    pod 'CHTCollectionViewWaterfallLayout/Swift'
+    
 end
 
 target 'PandaTests' do

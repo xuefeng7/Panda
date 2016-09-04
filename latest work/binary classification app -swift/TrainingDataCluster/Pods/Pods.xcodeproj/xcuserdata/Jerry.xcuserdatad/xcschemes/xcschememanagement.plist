@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CHTCollectionViewWaterfallLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JTMaterialSwitch-JTMaterialSwitch.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +67,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C9FD4F8C0FBBF8452DAFD9A3E04E2CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7D6D5D70A7ED41C75D20F0CBB9A2E839</key>
+		<key>5998966D465E4CFBBFAB04AE0993805D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +77,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BF7D6453BFA800C65F15559F3923FF03</key>
+		<key>ABB6BE779B371B39FE14B1869976620C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C2C2B3CA32C58C6216C24917E82660A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D61C12FFB6540137A29D3EDA45A155CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9FE886923EE3386D99392889352363C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -2,6 +2,8 @@
 
 require 'yaml'
 
+$srcUrls = [] # store all unique urls
+
 puts "loading..."
 posts = YAML.load_file('user_dic.yml')
 puts "YML file has been loaded"
@@ -20,9 +22,20 @@ for ids in posts.keys
 	totalCount += 1
 	puts "processing user No.#{totalCount}"
 	
-	photos = posts["#{ids}"]
+	urls = posts["#{ids}"]
+	uniqueUrl = []
+	# Make sure to remove all retweet caused duplicates
+	for url in urls
+		if $srcUrls.include? url
+			#retweet ignore
+		else
+			#new tweet
+			$srcUrls << url
+			uniqueUrl << url
+		end
+	end
 	
-	dstYMLFile["#{ids}"] = photos
+	dstYMLFile["#{ids}"] = uniqueUrl
 	
 	if idCount == foldSize then
 		dstFile.write dstYMLFile.to_yaml

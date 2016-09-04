@@ -11,10 +11,14 @@ import NVActivityIndicatorView
 import JTSImageViewController
 import SVWebViewController
 import StepSlider
+import CHTCollectionViewWaterfallLayout
 
-class MainRatingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var mainImageView: UIImageView!
+class MainRatingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
+    
+    @IBOutlet weak var mainImageView: UICollectionView!
+      
+    var images: NSMutableArray = NSMutableArray() //images
+   
     @IBOutlet weak var evaluateTable: UITableView!
     @IBOutlet weak var photoNameLabel: UILabel!
     
@@ -34,13 +38,30 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     // datasource
     var evaluateCategories: [String] = []
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        evaluateCategories = ["dark circle", "red eye", "glazed eye", "hanging eyelid", "swollen eye", "pale skin", "dropping mouth"]
+        evaluateCategories = ["dark circle", "red eye", "glazed eye", "hanging eyelid", "swollen eye", "wrinkles around eye", "droopy corner mouse", "pale skin"]
         
-        mainImageView.contentMode = .ScaleAspectFit
+        mainImageView.backgroundColor = UIColor.clearColor()
+        mainImageView.delegate = self
+        mainImageView.dataSource = self
+        
+        self.mainImageView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
+        self.mainImageView.alwaysBounceVertical = true
+        
+        // Configure spacing between cells
+        //let layout = UICollectionViewFlowLayout()
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.minimumInteritemSpacing = 2.0
+        layout.minimumColumnSpacing = 2.0
+        layout.sectionInset = UIEdgeInsetsMake(10.0, 5.0, 5.0, 5.0)
+        
+        // Add the waterfall layout to your collection view
+        mainImageView.collectionViewLayout = layout
+        
         
         evaluateTable.delegate = self
         evaluateTable.dataSource = self
@@ -52,7 +73,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         loadData()
         
         //initialize rating array
-        ratings = NSMutableArray(array: [0,0,0,0,0,0,0])
+        ratings = NSMutableArray(array: [0,0,0,0,0,0,0,0])
         
     }
     
@@ -61,8 +82,8 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         
         loadingIndicator.startAnimation()
         let query = AVQuery(className:"Face")
-        query.whereKey("name", containsString: "_fa") //only show majors
-        query.orderByAscending("name")
+        //query.whereKey("name", containsString: "_fa") //only show majors
+        query.orderByAscending("fid")
         query.limit = 100
         //read the assessed observation count
         //and set it as skip in query
@@ -90,43 +111,119 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
-
+    
     
     func displayImage() {
         if data.count == 0 {
             //load more
             loadData()
         }else{
-            if let picFile = data[0]["picture"] {
-                self.loadingIndicator.startAnimation()
-                (picFile as! AVFile).getDataInBackgroundWithBlock {
-                    (imageData: NSData?, error: NSError?) -> Void in
-                    self.loadingIndicator.stopAnimation()
-                    if error == nil {
-                        if let imageData = imageData {
-                            self.refreshBtn.alpha = 0
-                            UIView.animateWithDuration(0.2, animations: {
-                                self.mainImageView.image = UIImage(data: imageData)
-                            })
-                            if let name = self.data[0]["name"] as? String {
-                                self.photoNameLabel.text = name
-                            }else{
-                                self.photoNameLabel.text = "unknown"
-                            }
-                            //enable the move to next button
-                            self.nextBtn.userInteractionEnabled = true
+            // load all images from url to array
+            if let pathes = data[0]["pathes"] as? NSArray {
+                if let fid = data[0]["fid"] as? String {
+                    self.photoNameLabel.text = "subject id: \(fid)"
+                }else{
+                    self.photoNameLabel.text = "subject id: unknown"
+                }
+    
+                for path in pathes {
+                    if let url = path[1] {
+                        if let data = NSData(contentsOfURL: NSURL(string: url as! String)!) {
+                            self.images.addObject([UIImage(data: data)!, path[0]!])
+                        }else{
+                            self.images.addObject([UIImage(named: "placeholder")!,""])
                         }
+                        
                     }else{
-                        Utils.showMsg("Alert", msg: "load image failed with error: \(error)", vc: self)
-                        self.refreshBtn.alpha = 1
+                         self.images.addObject([UIImage(named: "placeholder")!, ""])
                     }
                 }
+                // reload collection view
+                self.mainImageView.reloadData()
+                self.loadingIndicator.stopAnimation()
             }
         }
     }
     
-    /// tableview datasource method
+    /// collection view data source
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCollectionViewCell
+        cell.backgroundColor = UIColor.clearColor()
+        //cell.ImageBox.contentMode = .ScaleAspectFit
+        cell.ImageBox.frame = CGRectMake(0, 0, cell.frame.width, cell.frame.height)
+        
+        let img = images[indexPath.row][0] as? UIImage
+        //let name =  images[indexPath.item][1] as! String
+        if let img = img {
+            cell.ImageBox.image = img
+        }else{
+            cell.ImageBox.image = UIImage(named: "placeholder")
+        }
+        
+        return cell
+    }
+    
+    /// pragma mark - UICollectionViewDelegateFlowLayout
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let asset = images[indexPath.item][0] as? UIImage
+        let name =  images[indexPath.item][1] as! String
+        
+        if let asset = asset {
+            if name.rangeOfString("_fa") != nil {
+                // primary
+                switch(images.count) {
+                case 5:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.5);
+                case 4:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.5);
+                case 3:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.25);
+                case 2:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.5);
+                default:
+                    return CGSizeMake( UIImage(named: "placeholder")!.size.width * 0.1,  UIImage(named: "placeholder")!.size.height * 0.1);
+                }
+            }else{
+                switch(images.count) {
+                case 5:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.25);
+                case 4:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.33);
+                case 3:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.25);
+                case 2:
+                    return CGSizeMake(asset.size.width * 0.5, asset.size.height * 0.5);
+                default:
+                    return CGSizeMake( UIImage(named: "placeholder")!.size.width * 0.1,  UIImage(named: "placeholder")!.size.height * 0.1);
+                }
+            }
+        }
+        
+        return CGSizeMake( UIImage(named: "placeholder")!.size.width * 0.1,  UIImage(named: "placeholder")!.size.height * 0.1);
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let image = self.images[indexPath.item][0] as! UIImage
+        let imageInfo = JTSImageInfo()
+        imageInfo.image = image
+        imageInfo.referenceRect = self.view.frame;
+        imageInfo.referenceView = self.view.superview;
+        imageViewer = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
+        imageViewer.showFromViewController(self, transition: .FromOffscreen)
+
+    }
+    
+    /// tableview datasource method
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return evaluateCategories.count
     }
@@ -136,10 +233,8 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     /// tableview delegate method
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        print(ratings)
         let cell = tableView.dequeueReusableCellWithIdentifier("RatingCell", forIndexPath: indexPath) as! RatingCell
         cell.steper.tag = indexPath.section
         
@@ -161,15 +256,11 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func UIConfig() {
         
-        // mainimageview tap gesture
-        let imageTap = UITapGestureRecognizer(target: self, action:#selector(ViewController.tapToViewImage))
-        mainImageView.userInteractionEnabled = true
-        mainImageView.addGestureRecognizer(imageTap)
-        
         //image loading indicator
-        loadingIndicator = NVActivityIndicatorView(frame: CGRectMake(mainImageView.center.x - 20, mainImageView.center.y - 20, 40, 40), type: .BallClipRotateMultiple, color: UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1), padding: 0)
+        loadingIndicator = NVActivityIndicatorView(frame: CGRectMake(self.view.center.x - 20, self.view.center.y - 20, 30, 30), type: .BallClipRotateMultiple, color: UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1), padding: 0)
         self.view.addSubview(loadingIndicator)
         self.view.bringSubviewToFront(loadingIndicator)
+        print("loading frame: \(loadingIndicator.frame)")
         
         //refresh button
         refreshBtn = UIButton()
@@ -205,19 +296,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.setRightBarButtonItem(signOutBarButton, animated: true)
         
     }
-    
-    /// tap to view the enlarged image
-    func tapToViewImage() {
-        
-        let image = mainImageView.image
-        let imageInfo = JTSImageInfo()
-        imageInfo.image = image
-        imageInfo.referenceRect = self.view.frame;
-        imageInfo.referenceView = self.view.superview;
-        imageViewer = JTSImageViewController(imageInfo: imageInfo, mode: .Image, backgroundStyle: .Blurred)
-        imageViewer.showFromViewController(self, transition: .FromOffscreen)
-    }
-    
+      
     /// next button action listener
     func saveThenMoveToNext() {
         //change button title
@@ -230,20 +309,26 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
             // periorbital hyperpigmentation
             let username = AVUser.currentUser().username
             
-            /// core ratings
+            //evaluateCategories = ["dark circle", "red eye", "glazed eye", "hanging eyelid", "swollen eye", "wrinkles around eye", "droopy corner mouse", "pale skin"]
+
             currentObj.addObject("\(ratings[0])(\(username))", forKey: evaluateCategories[0])
-            // periorbital puffiness
+            // dark circle
             currentObj.addObject("\(ratings[1])(\(username))", forKey: evaluateCategories[1])
-            // fatigue level
+            // red eye
             currentObj.addObject("\(ratings[2])(\(username))", forKey: evaluateCategories[2])
-            // fatigue level
+            // glazed eye
             currentObj.addObject("\(ratings[3])(\(username))", forKey: evaluateCategories[3])
-            // fatigue level
+            // hanging eyelid
             currentObj.addObject("\(ratings[4])(\(username))", forKey: evaluateCategories[4])
-            // fatigue level
+            // sowllen eye
             currentObj.addObject("\(ratings[5])(\(username))", forKey: evaluateCategories[5])
-            // fatigue level
+            // wrinkles around eyes
             currentObj.addObject("\(ratings[6])(\(username))", forKey: evaluateCategories[6])
+            // droopy mouth
+            currentObj.addObject("\(ratings[7])(\(username))", forKey: evaluateCategories[6])
+            // pale skin
+            
+            //currentObj.addObject("\(ratings[6])(\(username))", forKey: evaluateCategories[6])
             
             currentObj.saveInBackgroundWithBlock {
                 (success: Bool, error: NSError?) -> Void in
@@ -264,7 +349,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                     //move to the next
                     self.data.removeFirst()
-                    self.displayImage()
+                    //self.displayImage()
                    
                 } else {
                     // There was a problem, check error.description
@@ -306,7 +391,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
              cell.detailTextLabel?.text = "\(sender.index)"
         }
     }
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

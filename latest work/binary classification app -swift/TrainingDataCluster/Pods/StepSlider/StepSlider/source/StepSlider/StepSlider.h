@@ -13,7 +13,7 @@ IB_DESIGNABLE
 @interface StepSlider : UIControl
 
 /**
- *  Maximum amount of dots in slider.
+ *  Maximum amount of dots in slider. Must be `2` or greater.
  */
 @property (nonatomic) IBInspectable NSUInteger maxCount;
 
@@ -37,6 +37,11 @@ IB_DESIGNABLE
  *  Radius of the slider main wheel.
  */
 @property (nonatomic) IBInspectable CGFloat sliderCircleRadius;
+
+/**
+ *  A Boolean value that determines whether user interaction with dots are ignored. Default value is `YES`.
+ */
+@property (nonatomic, getter=isDotsInteractionEnabled) IBInspectable BOOL dotsInteractionEnabled;
 
 
 /**

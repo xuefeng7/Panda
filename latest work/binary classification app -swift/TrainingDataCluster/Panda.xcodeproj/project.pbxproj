@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30BE435F59D18DF9DA4EFEE8 /* Pods_PandaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187ABD68D4457C5737648BC1 /* Pods_PandaUITests.framework */; };
 		ABBCBFD0EB9D1FEB1245F5C9 /* Pods_PandaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */; };
+		C419A3691D7C5DBC00F0E6F5 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419A3681D7C5DBC00F0E6F5 /* ImageCollectionViewCell.swift */; };
 		C45BCAAB1D4B9B7B0030045B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45BCAAA1D4B9B7B0030045B /* Constant.swift */; };
 		C48316E51D4BFEE0005480AD /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316E41D4BFEE0005480AD /* SignInViewController.swift */; };
 		C48316E71D4BFEF4005480AD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316E61D4BFEF4005480AD /* SignUpViewController.swift */; };
@@ -16,6 +17,7 @@
 		C48316EB1D4C0982005480AD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48316EA1D4C0982005480AD /* Utils.swift */; };
 		C48966031D53C9BA00442BD4 /* MainRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */; };
 		C48966051D53CB5600442BD4 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48966041D53CB5600442BD4 /* RatingCell.swift */; };
+		C4C1F72D1D7B983B0078E77D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4C1F72C1D7B983B0078E77D /* QuartzCore.framework */; };
 		C4D9327B1D501D780007F6DF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D9327A1D501D780007F6DF /* WelcomeViewController.swift */; };
 		C4E1C6611CB08A0600518B37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6601CB08A0600518B37 /* AppDelegate.swift */; };
 		C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1C6621CB08A0600518B37 /* ViewController.swift */; };
@@ -53,6 +55,7 @@
 		6307850C851211F8E27AA4EB /* Pods-PandaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PandaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PandaTests/Pods-PandaTests.release.xcconfig"; sourceTree = "<group>"; };
 		8485162F684A0F145D696DF0 /* Pods_PandaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PandaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BF5DB060687566E56B3E97F /* Pods_Panda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Panda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C419A3681D7C5DBC00F0E6F5 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C45BCA9E1D4B984D0030045B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C45BCAA01D4B98530030045B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C45BCAA21D4B98570030045B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -67,6 +70,7 @@
 		C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRatingViewController.swift; sourceTree = "<group>"; };
 		C48966041D53CB5600442BD4 /* RatingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
 		C4AD102D1CB0BD3600D98135 /* Panda-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Panda-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		C4C1F72C1D7B983B0078E77D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C4D9327A1D501D780007F6DF /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C4E1C65D1CB08A0600518B37 /* Panda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E1C6601CB08A0600518B37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C1F72D1D7B983B0078E77D /* QuartzCore.framework in Frameworks */,
 				E19BD11EB40415152794DC93 /* Pods_Panda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +180,7 @@
 				C4E1C6641CB08A0600518B37 /* Main.storyboard */,
 				C4E1C6691CB08A0600518B37 /* LaunchScreen.storyboard */,
 				C48966021D53C9BA00442BD4 /* MainRatingViewController.swift */,
+				C419A3681D7C5DBC00F0E6F5 /* ImageCollectionViewCell.swift */,
 				C48966041D53CB5600442BD4 /* RatingCell.swift */,
 				C4E1C6621CB08A0600518B37 /* ViewController.swift */,
 				C4D9327D1D501D990007F6DF /* Utils */,
@@ -209,6 +215,7 @@
 		FBB9384AFB33A55745F6216A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4C1F72C1D7B983B0078E77D /* QuartzCore.framework */,
 				C45BCAA81D4B9A240030045B /* LeanCloud.framework */,
 				C45BCAA61D4B98660030045B /* libicucore.tbd */,
 				C45BCAA41D4B985C0030045B /* CoreLocation.framework */,
@@ -487,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48316E51D4BFEE0005480AD /* SignInViewController.swift in Sources */,
+				C419A3691D7C5DBC00F0E6F5 /* ImageCollectionViewCell.swift in Sources */,
 				C4D9327B1D501D780007F6DF /* WelcomeViewController.swift in Sources */,
 				C4E1C6631CB08A0600518B37 /* ViewController.swift in Sources */,
 				C48316E91D4BFF05005480AD /* ForgotPasswordViewController.swift in Sources */,
