@@ -141,6 +141,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                 // reload collection view
                 self.mainImageView.reloadData()
                 self.loadingIndicator.stopAnimation()
+                nextBtn.userInteractionEnabled = false
             }
         }
     }
@@ -262,15 +263,15 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         self.view.bringSubviewToFront(loadingIndicator)
         print("loading frame: \(loadingIndicator.frame)")
         
-        //refresh button
-        refreshBtn = UIButton()
-        refreshBtn.center = mainImageView.center
-        refreshBtn.frame.size = CGSizeMake(30, 30)
-        refreshBtn.setImage(UIImage(named: "refresh"), forState: .Normal)
-        refreshBtn.alpha = 0
-        refreshBtn.addTarget(self, action: #selector(ViewController.displayImage), forControlEvents: .TouchUpInside)
-        self.view.addSubview(refreshBtn)
-        self.view.bringSubviewToFront(refreshBtn)
+//        //refresh button
+//        refreshBtn = UIButton()
+//        refreshBtn.center = mainImageView.center
+//        refreshBtn.frame.size = CGSizeMake(30, 30)
+//        refreshBtn.setImage(UIImage(named: "refresh"), forState: .Normal)
+//        refreshBtn.alpha = 0
+//        refreshBtn.addTarget(self, action: #selector(ViewController.displayImage), forControlEvents: .TouchUpInside)
+//        self.view.addSubview(refreshBtn)
+//        self.view.bringSubviewToFront(refreshBtn)
         
         //tableview
         evaluateTable.separatorColor = UIColor.clearColor()
@@ -310,24 +311,23 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
             let username = AVUser.currentUser().username
             
             //evaluateCategories = ["dark circle", "red eye", "glazed eye", "hanging eyelid", "swollen eye", "wrinkles around eye", "droopy corner mouse", "pale skin"]
-
-            currentObj.addObject("\(ratings[0])(\(username))", forKey: evaluateCategories[0])
+            currentObj.addObject("\(ratings[0])(\(username))", forKey: "DarkCircle")
             // dark circle
-            currentObj.addObject("\(ratings[1])(\(username))", forKey: evaluateCategories[1])
+            currentObj.addObject("\(ratings[1])(\(username))", forKey: "RedEye")
             // red eye
-            currentObj.addObject("\(ratings[2])(\(username))", forKey: evaluateCategories[2])
+            currentObj.addObject("\(ratings[2])(\(username))", forKey: "GlazedEye")
             // glazed eye
-            currentObj.addObject("\(ratings[3])(\(username))", forKey: evaluateCategories[3])
+            currentObj.addObject("\(ratings[3])(\(username))", forKey: "HangingEyelid")
             // hanging eyelid
-            currentObj.addObject("\(ratings[4])(\(username))", forKey: evaluateCategories[4])
+            currentObj.addObject("\(ratings[4])(\(username))", forKey: "SwollenEye")
             // sowllen eye
-            currentObj.addObject("\(ratings[5])(\(username))", forKey: evaluateCategories[5])
+            currentObj.addObject("\(ratings[5])(\(username))", forKey: "Wrinkles")
             // wrinkles around eyes
-            currentObj.addObject("\(ratings[6])(\(username))", forKey: evaluateCategories[6])
+            currentObj.addObject("\(ratings[6])(\(username))", forKey: "DroopyMouse")
             // droopy mouth
-            currentObj.addObject("\(ratings[7])(\(username))", forKey: evaluateCategories[6])
+            currentObj.addObject("\(ratings[7])(\(username))", forKey: "PaleSkin")
             // pale skin
-            
+
             //currentObj.addObject("\(ratings[6])(\(username))", forKey: evaluateCategories[6])
             
             currentObj.saveInBackgroundWithBlock {
@@ -347,13 +347,13 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                     AVUser.currentUser().incrementKey("assessed")
                     AVUser.currentUser().saveEventually()
                     
-                    //move to the next
+                    // move to the next
                     self.data.removeFirst()
-                    //self.displayImage()
+                    // self.displayImage()
                    
                 } else {
-                    // There was a problem, check error.description
-                    Utils.showMsg("Save Failed", msg: "\(error?.description)", vc: self)
+                    // there was a problem, check error.description
+                    Utils.showMsg("Save Failed", msg: "\(error?.localizedDescription)", vc: self)
                 }
             }
         }else {
@@ -372,7 +372,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func openInfo() {
-        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-xvnufxdmg3zx/K7ORiRbC3IScCDUotgBy7WnvIYkxI7WzkiaApCcf.html")
+        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/8452ec87886d38c567cb.html")
         self.presentViewController(webViewer, animated: true, completion: nil)
     }
     

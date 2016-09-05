@@ -434,7 +434,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="next"/>
                                 <connections>
-                                    <action selector="SignUpWithSender:" destination="FMN-Ld-llv" eventType="touchUpInside" id="Q3e-WJ-4FA"/>
+                                    <action selector="SignUpWithSender:" destination="FMN-Ld-llv" eventType="touchUpInside" id="h2Y-wJ-hgK"/>
                                 </connections>
                             </button>
                         </barButtonItem>
