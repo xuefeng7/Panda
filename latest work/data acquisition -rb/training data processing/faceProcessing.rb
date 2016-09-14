@@ -169,3 +169,5 @@ puts "requesting face landmarks and cropping...(totoal: #{faces.length})"
   }
 puts "work done, yay!"
 end
+
+#[["00043_931230_fa.png","https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/LnxaqUrgPWurz75qQleLLmzCnsCMors7WYV5cDIv.png"],["00043_931230_fb.png","https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/EFRem8fgq5ImYYqMXK21vWXNgaqYjgD4TF8JYMVM.png"],["00043_931230_hl.png","https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/tf1BTeNHlqXVaYAie7u3m5wcYnUVVsEWnrfEiqBc.png"],["00043_931230_pl.png","https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/RDb9KSaez1Na4kLATU2vFbbPiUTUUaLvkJ4gcb8S.png"],["00043_931230_pr.png","https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/fwc4W4OF3Bt2RyJKqTtwjp6EqrPsxeNija18yHBg.png"]]

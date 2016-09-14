@@ -38,16 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
             // have initialized.
             // compare with remote one
-            let localAssessed = NSUserDefaults.standardUserDefaults().objectForKey("assessed") as! Int
-            if localAssessed > user.objectForKey("assessed") as! Int {
-                // update the remote one
-                user.setObject(localAssessed, forKey: "assessed")
-                user.save()
-            }else if localAssessed < user.objectForKey("assessed") as! Int {
-                // this case happens if user delete the app
-                 let remoteAssessed = user.objectForKey("assessed") as! Int
-                 NSUserDefaults.standardUserDefaults().setInteger(remoteAssessed, forKey: "assessed")
-            }
+//            let localAssessed = NSUserDefaults.standardUserDefaults().objectForKey("assessed") as! Int
+//            if localAssessed > user.objectForKey("assessed") as! Int {
+//                // update the remote one
+//                user.setObject(localAssessed, forKey: "assessed")
+//                user.save()
+//            }else if localAssessed < user.objectForKey("assessed") as! Int {
+//                // this case happens if user delete the app
+//                 let remoteAssessed = user.objectForKey("assessed") as! Int
+//                 NSUserDefaults.standardUserDefaults().setInteger(remoteAssessed, forKey: "assessed")
+//            }
 
             // Main view
             let mainNav = storyboard.instantiateViewControllerWithIdentifier("mainNav") as! UINavigationController

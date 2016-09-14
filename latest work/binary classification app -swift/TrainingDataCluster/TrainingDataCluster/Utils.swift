@@ -19,5 +19,15 @@ class Utils: NSObject {
     class func dismissKeyboard(textfield: UITextField) {
         textfield.resignFirstResponder()
     }
+    
+    class func shuffleArray(array: NSMutableArray) {
+        if array.count < 2 {
+            // ignore
+        }
+        for idx in 0...(array.count - 1) {
+            let randInt = Int(arc4random_uniform(UInt32(array.count - idx))) + idx
+           swap(&array[idx], &array[randInt])
+        }
+    }
 
 }

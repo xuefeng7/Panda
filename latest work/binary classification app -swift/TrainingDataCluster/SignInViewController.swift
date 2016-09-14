@@ -16,9 +16,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     var loadingIndicator: NVActivityIndicatorView!
     
-    @IBAction func SignIn(sender: AnyObject) {
-        SignInHandler()
-    }
+    @IBOutlet weak var signInButton: UIButton!
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -30,6 +28,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         // first responder
         emailField.becomeFirstResponder()
+        signInButton.addTarget(self, action: #selector(SignInViewController.SignInHandler), forControlEvents: .TouchUpInside)
         
         loadingIndicator = NVActivityIndicatorView(frame: CGRectMake(self.view.center.x - 20, self.view.center.y - 20, 40, 40), type: .BallClipRotateMultiple, color: UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1), padding: 0)
         self.view.addSubview(loadingIndicator)

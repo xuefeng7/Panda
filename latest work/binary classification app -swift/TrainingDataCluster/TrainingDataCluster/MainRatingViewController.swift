@@ -1,3 +1,4 @@
+
 //
 //  MainRatingViewController.swift
 //  Panda
@@ -22,7 +23,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var evaluateTable: UITableView!
     @IBOutlet weak var photoNameLabel: UILabel!
     
-    var data = Array<AVObject>()
+    var data = NSMutableArray()
     var ratings: NSMutableArray!
     //assessed observation count
     var assessedObservation: Int = 0
@@ -62,7 +63,6 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         // Add the waterfall layout to your collection view
         mainImageView.collectionViewLayout = layout
         
-        
         evaluateTable.delegate = self
         evaluateTable.dataSource = self
         
@@ -84,10 +84,10 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         let query = AVQuery(className:"Face")
         //query.whereKey("name", containsString: "_fa") //only show majors
         query.orderByAscending("fid")
-        query.limit = 100
+        query.limit = 50
         //read the assessed observation count
         //and set it as skip in query
-        query.skip = AVUser.currentUser().objectForKey("assessed") as! Int
+        query.whereKey("DarkCircle", notContainedIn:["0(\(AVUser.currentUser().email)","1(\(AVUser.currentUser().email))","2(\(AVUser.currentUser().email))","3(\(AVUser.currentUser().email))"])
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -97,10 +97,9 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                     if objects.count == 0 {
                         Utils.showMsg("Thank you", msg: "You have finished the rating, thanks sincerely for your paticipation", vc: self)
                     }else{
-                        
-                        for object in objects {
-                            self.data.append(object as! AVObject)
-                        }
+                        self.data = NSMutableArray(array: objects)
+                        //shuffle the array
+                        Utils.shuffleArray(self.data)
                         self.displayImage()
                     }
                 }
@@ -119,29 +118,33 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
             loadData()
         }else{
             // load all images from url to array
+            loadingIndicator.startAnimation()
             if let pathes = data[0]["pathes"] as? NSArray {
                 if let fid = data[0]["fid"] as? String {
                     self.photoNameLabel.text = "subject id: \(fid)"
                 }else{
                     self.photoNameLabel.text = "subject id: unknown"
                 }
-    
-                for path in pathes {
-                    if let url = path[1] {
-                        if let data = NSData(contentsOfURL: NSURL(string: url as! String)!) {
-                            self.images.addObject([UIImage(data: data)!, path[0]!])
-                        }else{
-                            self.images.addObject([UIImage(named: "placeholder")!,""])
-                        }
+                
+                for idx in 0...(pathes.count - 1) {
+                    if let imgSrc = pathes[idx] as? NSArray {
                         
-                    }else{
-                         self.images.addObject([UIImage(named: "placeholder")!, ""])
+                        //let url = imgSrc[1] as? String
+                        let imgName = imgSrc[0] as! String
+                        
+                        if let url = imgSrc[1] as? String {
+                            
+                            if let data = NSData(contentsOfURL: NSURL(string: url)!) {
+                                self.images.addObject([UIImage(data: data)!, imgName])
+                            }
+                        }
                     }
                 }
+
                 // reload collection view
                 self.mainImageView.reloadData()
                 self.loadingIndicator.stopAnimation()
-                nextBtn.userInteractionEnabled = false
+                nextBtn.userInteractionEnabled = true
             }
         }
     }
@@ -162,25 +165,32 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         //cell.ImageBox.contentMode = .ScaleAspectFit
         cell.ImageBox.frame = CGRectMake(0, 0, cell.frame.width, cell.frame.height)
         
-        let img = images[indexPath.row][0] as? UIImage
-        //let name =  images[indexPath.item][1] as! String
-        if let img = img {
+        //let img = images.objectAtIndex(indexPath.row)[0] as? UIImage
+        let name =  (images.objectAtIndex(indexPath.item) as! NSArray)[1] as! String
+        // highlight the primary photo
+        if name.rangeOfString("_fa.") != nil || name.rangeOfString("_fa_a.") != nil  {
+            cell.ImageBox.layer.borderWidth = 2.0
+            cell.ImageBox.layer.borderColor = UIColor.redColor().CGColor
+        }else{
+            cell.ImageBox.layer.borderWidth = 0.0
+        }
+        if let img = (images.objectAtIndex(indexPath.item) as! NSArray)[0] as? UIImage {
             cell.ImageBox.image = img
         }else{
             cell.ImageBox.image = UIImage(named: "placeholder")
         }
-        
+
         return cell
     }
     
     /// pragma mark - UICollectionViewDelegateFlowLayout
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let asset = images[indexPath.item][0] as? UIImage
-        let name =  images[indexPath.item][1] as! String
+        let asset = (images.objectAtIndex(indexPath.item) as! NSArray)[0] as? UIImage
+        let name = (images.objectAtIndex(indexPath.item) as! NSArray)[1] as! String
         
         if let asset = asset {
-            if name.rangeOfString("_fa") != nil {
+            if name.rangeOfString("_fa.") != nil {
                 // primary
                 switch(images.count) {
                 case 5:
@@ -214,7 +224,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let image = self.images[indexPath.item][0] as! UIImage
+        let image = (images.objectAtIndex(indexPath.item) as! NSArray)[0] as! UIImage
         let imageInfo = JTSImageInfo()
         imageInfo.image = image
         imageInfo.referenceRect = self.view.frame;
@@ -244,7 +254,6 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.detailTextLabel?.text = "\(rating)"
         // steper action
         cell.steper.addTarget(self, action: #selector(MainRatingViewController.sliderValueChanged), forControlEvents: .ValueChanged)
-       
              
         cell.selectionStyle = .None
             
@@ -252,7 +261,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return evaluateCategories[section]
+        return "\(evaluateCategories[section]) (not at all  -> very)"
     }
     
     func UIConfig() {
@@ -285,6 +294,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         nextBtn.titleLabel?.textColor = UIColor.whiteColor()
         nextBtn.addTarget(self, action: #selector(ViewController.saveThenMoveToNext), forControlEvents: .TouchUpInside)
         self.view.addSubview(nextBtn)
+        nextBtn.userInteractionEnabled = false
         
         // bar buttons
         let openInfoButton = UIButton(type: .InfoLight)
@@ -306,7 +316,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         //to prevent duplicate tap
         nextBtn.userInteractionEnabled = false
         if data.count > 0 {
-            let currentObj = data.first!
+            let currentObj = data.firstObject!
             // periorbital hyperpigmentation
             let username = AVUser.currentUser().username
             
@@ -341,15 +351,24 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                     // The object has been saved.
                     // increment the assessed number for user
                     // local
-                    self.assessedObservation += 1
-                    NSUserDefaults.standardUserDefaults().setInteger(self.assessedObservation, forKey: "assessed")
-                    // remote
-                    AVUser.currentUser().incrementKey("assessed")
-                    AVUser.currentUser().saveEventually()
+//                    self.assessedObservation += 1
+//                    NSUserDefaults.standardUserDefaults().setInteger(self.assessedObservation, forKey: "assessed")
+//                    // remote
+//                    AVUser.currentUser().incrementKey("assessed")
+//                    AVUser.currentUser().saveEventually()
                     
                     // move to the next
-                    self.data.removeFirst()
-                    // self.displayImage()
+                    self.data.removeObjectAtIndex(0)
+                    // clear images array
+                    self.images.removeAllObjects()
+                    // clear all collection view cell
+                    self.mainImageView.reloadData()
+                    // reset the slider table
+                    self.ratings = NSMutableArray(array: [0,0,0,0,0,0,0,0])
+                    self.evaluateTable.reloadData()
+                    self.evaluateTable.setContentOffset(CGPointZero, animated:true)
+                    // dispay next face
+                    self.displayImage()
                    
                 } else {
                     // there was a problem, check error.description
@@ -360,19 +379,9 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
             Utils.showMsg("Warning", msg: "Data set is empty", vc: self)
         }
     }
-    
-    /// after moving to next observation, set the step to default value
-    func setCellSteperToDefault() {
-        for section in 0...(evaluateCategories.count - 1) {
-            let cell = evaluateTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! RatingCell
-            (cell.viewWithTag(section) as! StepSlider).index = 0
-        }
-        // reload table
-        evaluateTable.reloadData()
-    }
-    
+   
     func openInfo() {
-        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/8452ec87886d38c567cb.html")
+        let webViewer = SVModalWebViewController(address: "https://s3.amazonaws.com/avos-cloud-etos3zlqppdq/9b3138256c1e8d776582.html")
         self.presentViewController(webViewer, animated: true, completion: nil)
     }
     

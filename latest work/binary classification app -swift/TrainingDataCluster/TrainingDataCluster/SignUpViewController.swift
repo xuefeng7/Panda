@@ -16,9 +16,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var loadingIndicator: NVActivityIndicatorView!
     
-    @IBAction func SignUp(sender: AnyObject) {
-        SignUpHanlder()
-    }
+    @IBOutlet weak var SignUpButton: UIButton!
 
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -30,6 +28,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         // first responder
         emailField.becomeFirstResponder()
+        SignUpButton.addTarget(self, action: #selector(SignUpViewController.SignUpHanlder), forControlEvents: .TouchUpInside)
         
         loadingIndicator = NVActivityIndicatorView(frame: CGRectMake(self.view.center.x - 20, self.view.center.y - 20, 40, 40), type: .BallClipRotateMultiple, color: UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1), padding: 0)
         self.view.addSubview(loadingIndicator)

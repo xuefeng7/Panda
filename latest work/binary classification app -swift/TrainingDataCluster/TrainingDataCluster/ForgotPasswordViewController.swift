@@ -14,9 +14,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     var loadingIndicator: NVActivityIndicatorView!
    
-    @IBAction func Reset(sender: AnyObject) {
-        resetHandler()
-    }
+    @IBOutlet weak var resetButotn: UIButton!
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -28,6 +26,7 @@ class ForgotPasswordViewController: UIViewController, UITextFieldDelegate {
         
         // first responder
         emailField.becomeFirstResponder()
+        resetButotn.addTarget(self, action: #selector(ForgotPasswordViewController.resetHandler), forControlEvents: .TouchUpInside)
         
         loadingIndicator = NVActivityIndicatorView(frame: CGRectMake(self.view.center.x - 20, self.view.center.y - 20, 40, 40), type: .BallClipRotateMultiple, color: UIColor(red: 143/255.0, green: 179/255.0, blue: 247/255.0, alpha: 1), padding: 0)
         self.view.addSubview(loadingIndicator)
