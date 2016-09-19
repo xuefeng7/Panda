@@ -71,7 +71,7 @@ req = Net::HTTP::Get.new(uri.request_uri, initheader = {
 	'Content-Type' => 'application/json'
 	})
 #send request
-res = http.request(req)
+res = http.request(req)w
 data = JSON.parse(res.body)
 #return face JSON object
 return data['results']
