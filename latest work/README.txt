@@ -116,3 +116,9 @@ result
 
 
 
+Pittsburgh Sleep Quality Index
+Subjective Units of Distress Scale
+
+
+intraclass correlation: correlation between categorical and numeric data
+https://en.wikipedia.org/wiki/Intraclass_correlation

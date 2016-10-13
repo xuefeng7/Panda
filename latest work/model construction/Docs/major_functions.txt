@@ -1,0 +1,21 @@
+
+- extractFeature(image, [[xmin, ymin, w, h]]) -> [[feature vector]]
+	
+	This function takes an image, and a list of landmark points as input,
+	it crops the interested areas and mirror it to four other directions, and then 		apply dense sift on each of them to obtain feature vector.
+
+- waveletPCA([[feature vector]]) -> [[feature vector]]
+	
+	This apply the multilevel wavelet PCA to the feature vector to
+	get and most principle feature and reduce the vector size for saving
+	model trainining time
+
+- trainModel(svm, [observations matrix]) -> svm
+
+	A function trains the regression svm model
+
+- crossValidation(svm) -> [score, roc]
+	
+	5-fold/10-fold cross validate the trained data and output the
+	the score and display the ROC curve.
+

@@ -43,7 +43,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+            
         evaluateCategories = ["dark circle", "red eye", "glazed eye", "hanging eyelid", "swollen eye", "wrinkles around eye", "droopy corner mouse", "pale skin"]
         
         mainImageView.backgroundColor = UIColor.clearColor()
@@ -87,7 +87,8 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
         query.limit = 50
         //read the assessed observation count
         //and set it as skip in query
-        query.whereKey("DarkCircle", notContainedIn:["0(\(AVUser.currentUser().email)","1(\(AVUser.currentUser().email))","2(\(AVUser.currentUser().email))","3(\(AVUser.currentUser().email))"])
+        
+        query.whereKey("DarkCircle", notContainedIn: ["0(\(AVUser.currentUser().email))","1(\(AVUser.currentUser().email))","2(\(AVUser.currentUser().email))","3(\(AVUser.currentUser().email))"])
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -97,6 +98,7 @@ class MainRatingViewController: UIViewController, UITableViewDelegate, UITableVi
                     if objects.count == 0 {
                         Utils.showMsg("Thank you", msg: "You have finished the rating, thanks sincerely for your paticipation", vc: self)
                     }else{
+                       
                         self.data = NSMutableArray(array: objects)
                         //shuffle the array
                         Utils.shuffleArray(self.data)

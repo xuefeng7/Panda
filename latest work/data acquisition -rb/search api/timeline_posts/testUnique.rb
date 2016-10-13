@@ -1,6 +1,7 @@
 require "yaml"
 
-src = YAML.load_file("users_dict_serie_2.yml")
+file = YAML.load_file("users_dict_serie_2.yml")
+src = YAML.load_file("new_urls.yml")
 
 unique = Hash.new
 
@@ -10,14 +11,22 @@ uni = 0
 
 for i in 1...10
 	compare = YAML.load_file("timeline_#{i}.yml")
-	for user in compare 
+	for user in compare
 		for url in user[1]
-			total += 1
+			#total += 1
 			unique[url] = ""
 		end
 	end 
 end
-puts total
+
+
+for id in file.keys
+	for path in file[id]
+		#total += 1
+		unique[url] = ""
+	end
+end
+
 puts unique.size
 
 # compare the new file with unique
